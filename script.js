@@ -1,21 +1,12 @@
 document.addEventListener('DOMContentLoaded', function() {
     const menuToggle = document.getElementById('menuToggle');
     const mainNav = document.querySelector('.main-nav ul');
-    const navLinks = document.querySelectorAll('.nav-link, .footer a[data-target]');
+    const navLinks = document.querySelectorAll('.nav-link');
     const contentSections = document.querySelectorAll('.content-section');
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const searchInput = document.getElementById('searchInput');
-    const themeToggle = document.getElementById('themeToggle');
-    const runCodeButton = document.getElementById('runCode');
-    const tabButtons = document.querySelectorAll('.tab-btn');
-    const codeEditors = document.querySelectorAll('.code-editor');
-    const previewFrame = document.getElementById('previewFrame');
-    const exampleButtons = document.querySelectorAll('.example');
-    const currentYearElement = document.getElementById('currentYear');
-    const progressTracker = document.getElementById('progressTracker');
-    const progressFill = progressTracker.querySelector('.progress-fill');
-    const progressText = progressTracker.querySelector('.progress-text span');
+    const heroButtons = document.querySelectorAll('.hero-buttons .btn');
+    const footerLinks = document.querySelectorAll('.footer-section a[data-target]');
     
+    const currentYearElement = document.getElementById('currentYear');
     if (currentYearElement) {
         currentYearElement.textContent = new Date().getFullYear();
     }
@@ -27,27 +18,930 @@ document.addEventListener('DOMContentLoaded', function() {
             : '<i class="fas fa-bars"></i>';
     });
     
+    function switchSection(targetId) {
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('data-target') === targetId) {
+                link.classList.add('active');
+            }
+        });
+        
+        contentSections.forEach(section => {
+            section.classList.remove('active');
+            if (section.id === targetId) {
+                section.classList.add('active');
+            }
+        });
+        
+        if (mainNav.classList.contains('show')) {
+            mainNav.classList.remove('show');
+            menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        }
+        
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+    
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             const targetId = this.getAttribute('data-target');
+            switchSection(targetId);
+        });
+    });
+    
+    heroButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('data-target');
+            switchSection(targetId);
+        });
+    });
+    
+    footerLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('data-target');
+            switchSection(targetId);
+        });
+    });
+    
+    const themeToggle = document.getElementById('themeToggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', function() {
+            document.body.classList.toggle('dark-theme');
+            const icon = this.querySelector('i');
+            if (document.body.classList.contains('dark-theme')) {
+                icon.className = 'fas fa-sun';
+                this.title = 'Switch to light mode';
+            } else {
+                icon.className = 'fas fa-moon';
+                this.title = 'Switch to dark mode';
+            }
+        });
+    }
+    
+    const progressTracker = document.getElementById('progressTracker');
+    const progressFill = progressTracker.querySelector('.progress-fill');
+    const progressText = progressTracker.querySelector('.progress-text span');
+    
+    window.addEventListener('scroll', function() {
+        const scrollTop = window.pageYOffset;
+        const docHeight = document.body.offsetHeight - window.innerHeight;
+        const scrollPercent = (scrollTop / docHeight) * 100;
+        
+        progressFill.style.width = scrollPercent + '%';
+        progressText.textContent = Math.round(scrollPercent) + '%';
+        
+        if (scrollPercent > 5) {
+            progressTracker.style.display = 'block';
+        } else {
+            progressTracker.style.display = 'none';
+        }
+    });
+    
+    const runCodeButton = document.getElementById('runCode');
+    const tabButtons = document.querySelectorAll('.tab-btn');
+    const codeEditors = document.querySelectorAll('.code-editor');
+    const previewFrame = document.getElementById('previewFrame');
+    
+    if (runCodeButton) {
+        runCodeButton.addEventListener('click', function() {
+            const htmlCode = document.getElementById('htmlCode').value;
+            const cssCode = document.getElementById('cssCode').value;
+            const jsCode = document.getElementById('jsCode').value;
             
-            navLinks.forEach(link => link.classList.remove('active'));
+            const fullHTML = `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <style>${cssCode}</style>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            ${jsCode}
+                        });
+                    <\/script>
+                </head>
+                ${htmlCode.replace('<script src="script.js"></script>', '')}
+                </html>
+            `;
+            
+            const iframeDoc = previewFrame.contentDocument || previewFrame.contentWindow.document;
+            iframeDoc.open();
+            iframeDoc.write(fullHTML);
+            iframeDoc.close();
+        });
+        
+        runCodeButton.click();
+    }
+    
+    tabButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const tab = this.getAttribute('data-tab');
+            
+            tabButtons.forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
             
-            contentSections.forEach(section => {
-                section.classList.remove('active');
-                if (section.id === targetId) {
-                    section.classList.add('active');
+            codeEditors.forEach(editor => {
+                editor.classList.remove('active');
+                if (editor.id === `${tab}-editor`) {
+                    editor.classList.add('active');
                 }
             });
-            
-            if (mainNav.classList.contains('show')) {
-                mainNav.classList.remove('show');
-                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        });
+    });
+    
+    const exampleButtons = document.querySelectorAll('.example');
+    exampleButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const exampleName = this.getAttribute('data-name');
+            switch(exampleName) {
+                case 'Calculator':
+                    document.getElementById('htmlCode').value = `<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Kalkulator Sederhana</h1>
+        <div class="calculator">
+            <div class="display" id="display">0</div>
+            <div class="buttons">
+                <button class="btn clear" onclick="clearDisplay()">C</button>
+                <button class="btn operator" onclick="appendToDisplay('/')">/</button>
+                <button class="btn operator" onclick="appendToDisplay('*')">×</button>
+                <button class="btn operator" onclick="appendToDisplay('-')">-</button>
+                
+                <button class="btn" onclick="appendToDisplay('7')">7</button>
+                <button class="btn" onclick="appendToDisplay('8')">8</button>
+                <button class="btn" onclick="appendToDisplay('9')">9</button>
+                <button class="btn operator" onclick="appendToDisplay('+')">+</button>
+                
+                <button class="btn" onclick="appendToDisplay('4')">4</button>
+                <button class="btn" onclick="appendToDisplay('5')">5</button>
+                <button class="btn" onclick="appendToDisplay('6')">6</button>
+                <button class="btn equals" onclick="calculate()" rowspan="2">=</button>
+                
+                <button class="btn" onclick="appendToDisplay('1')">1</button>
+                <button class="btn" onclick="appendToDisplay('2')">2</button>
+                <button class="btn" onclick="appendToDisplay('3')">3</button>
+                
+                <button class="btn zero" onclick="appendToDisplay('0')">0</button>
+                <button class="btn" onclick="appendToDisplay('.')">.</button>
+                <button class="btn" onclick="backspace()">⌫</button>
+            </div>
+        </div>
+        <div id="history"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>`;
+                    
+                    document.getElementById('cssCode').value = `* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+}
+
+h1 {
+    color: #667eea;
+    margin-bottom: 20px;
+}
+
+.calculator {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.display {
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    font-size: 2rem;
+    text-align: right;
+    margin-bottom: 20px;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    overflow-x: auto;
+    font-family: 'Courier New', monospace;
+    color: #333;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.btn {
+    padding: 15px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+    font-weight: bold;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn.clear {
+    background: #ff6b6b;
+    color: white;
+}
+
+.btn.operator {
+    background: #4ecdc4;
+    color: white;
+}
+
+.btn.equals {
+    background: #1dd1a1;
+    color: white;
+    grid-row: span 2;
+}
+
+.btn.zero {
+    grid-column: span 2;
+}
+
+.btn:not(.clear):not(.operator):not(.equals) {
+    background: white;
+    color: #333;
+    border: 1px solid #e0e0e0;
+}
+
+#history {
+    margin-top: 20px;
+    padding: 10px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    min-height: 50px;
+    text-align: left;
+}
+
+.history-item {
+    padding: 5px 0;
+    border-bottom: 1px solid #e0e0e0;
+    font-family: 'Courier New', monospace;
+    color: #666;
+}`;
+                    
+                    document.getElementById('jsCode').value = `let displayValue = '0';
+let previousValue = '';
+let operator = '';
+let shouldResetDisplay = false;
+
+const display = document.getElementById('display');
+const history = document.getElementById('history');
+
+function updateDisplay() {
+    display.textContent = displayValue;
+}
+
+function appendToDisplay(value) {
+    if (shouldResetDisplay) {
+        displayValue = '';
+        shouldResetDisplay = false;
+    }
+    
+    if (value === '.' && displayValue.includes('.')) {
+        return;
+    }
+    
+    if (displayValue === '0' && value !== '.') {
+        displayValue = value;
+    } else {
+        displayValue += value;
+    }
+    
+    updateDisplay();
+}
+
+function setOperator(op) {
+    if (operator && !shouldResetDisplay) {
+        calculate();
+    }
+    
+    previousValue = displayValue;
+    operator = op;
+    shouldResetDisplay = true;
+    
+    addHistory(\`\${previousValue} \${op}\`);
+}
+
+function calculate() {
+    if (!operator || shouldResetDisplay) return;
+    
+    const prev = parseFloat(previousValue);
+    const current = parseFloat(displayValue);
+    let result = 0;
+    
+    switch(operator) {
+        case '+':
+            result = prev + current;
+            break;
+        case '-':
+            result = prev - current;
+            break;
+        case '*':
+            result = prev * current;
+            break;
+        case '/':
+            if (current === 0) {
+                alert('Tidak bisa membagi dengan 0!');
+                clearDisplay();
+                return;
+            }
+            result = prev / current;
+            break;
+    }
+    
+    displayValue = result.toString();
+    updateDisplay();
+    
+    addHistory(\`\${prev} \${operator} \${current} = \${result}\`);
+    
+    operator = '';
+    shouldResetDisplay = true;
+}
+
+function clearDisplay() {
+    displayValue = '0';
+    previousValue = '';
+    operator = '';
+    updateDisplay();
+    history.innerHTML = '';
+}
+
+function backspace() {
+    if (displayValue.length > 1) {
+        displayValue = displayValue.slice(0, -1);
+    } else {
+        displayValue = '0';
+    }
+    updateDisplay();
+}
+
+function addHistory(text) {
+    const historyItem = document.createElement('div');
+    historyItem.className = 'history-item';
+    historyItem.textContent = text;
+    history.prepend(historyItem);
+    
+    if (history.children.length > 5) {
+        history.removeChild(history.lastChild);
+    }
+}
+
+updateDisplay();
+
+document.addEventListener('keydown', function(event) {
+    const key = event.key;
+    
+    if (key >= '0' && key <= '9') {
+        appendToDisplay(key);
+    } else if (key === '.') {
+        appendToDisplay('.');
+    } else if (key === '+' || key === '-' || key === '*' || key === '/') {
+        setOperator(key);
+    } else if (key === 'Enter' || key === '=') {
+        calculate();
+    } else if (key === 'Escape' || key === 'Delete') {
+        clearDisplay();
+    } else if (key === 'Backspace') {
+        backspace();
+    }
+});`;
+                    
+                    document.querySelector('[data-tab="html"]').click();
+                    break;
+                    
+                case 'TodoList':
+                    document.getElementById('htmlCode').value = `<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1><i class="fas fa-tasks"></i> Todo List</h1>
+        <p class="subtitle">Kelola tugas Anda dengan mudah</p>
+        
+        <div class="input-section">
+            <input type="text" id="todoInput" placeholder="Tambahkan tugas baru...">
+            <button onclick="addTodo()" class="add-btn">
+                <i class="fas fa-plus"></i> Tambah
+            </button>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <span class="stat-number" id="totalTodos">0</span>
+                <span class="stat-label">Total</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="completedTodos">0</span>
+                <span class="stat-label">Selesai</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="pendingTodos">0</span>
+                <span class="stat-label">Pending</span>
+            </div>
+        </div>
+        
+        <div class="filters">
+            <button class="filter-btn active" onclick="filterTodos('all')">Semua</button>
+            <button class="filter-btn" onclick="filterTodos('active')">Aktif</button>
+            <button class="filter-btn" onclick="filterTodos('completed')">Selesai</button>
+        </div>
+        
+        <div class="todo-list" id="todoList">
+        </div>
+        
+        <div class="actions">
+            <button onclick="clearCompleted()" class="action-btn">
+                <i class="fas fa-trash"></i> Hapus Selesai
+            </button>
+            <button onclick="clearAll()" class="action-btn danger">
+                <i class="fas fa-trash-alt"></i> Hapus Semua
+            </button>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>`;
+                    
+                    document.getElementById('cssCode').value = `* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    width: 100%;
+}
+
+h1 {
+    color: #667eea;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 2rem;
+}
+
+.subtitle {
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 1rem;
+}
+
+.input-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+#todoInput {
+    flex: 1;
+    padding: 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+#todoInput:focus {
+    border-color: #667eea;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.add-btn {
+    background: #667eea;
+    color: white;
+    border: none;
+    padding: 15px 25px;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+}
+
+.add-btn:hover {
+    background: #5a6ff0;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.stat-item {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    border-top: 4px solid #667eea;
+}
+
+.stat-number {
+    display: block;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #667eea;
+}
+
+.stat-label {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.filter-btn {
+    flex: 1;
+    padding: 10px;
+    background: #f8f9fa;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+}
+
+.filter-btn.active {
+    background: #667eea;
+    color: white;
+    border-color: #667eea;
+}
+
+.filter-btn:hover:not(.active) {
+    background: #e9ecef;
+}
+
+.todo-list {
+    margin-bottom: 30px;
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.todo-item {
+    background: #f8f9fa;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-left: 4px solid #667eea;
+    transition: all 0.3s;
+}
+
+.todo-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.todo-item.completed {
+    opacity: 0.7;
+    border-left-color: #48bb78;
+}
+
+.todo-checkbox {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.todo-text {
+    flex: 1;
+    font-size: 1rem;
+}
+
+.todo-item.completed .todo-text {
+    text-decoration: line-through;
+    color: #666;
+}
+
+.todo-date {
+    color: #999;
+    font-size: 0.8rem;
+}
+
+.todo-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.todo-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.todo-btn.edit {
+    color: #48bb78;
+}
+
+.todo-btn.delete {
+    color: #f56565;
+}
+
+.todo-btn:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+}
+
+.action-btn {
+    flex: 1;
+    padding: 12px;
+    background: #f8f9fa;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.action-btn.danger {
+    color: #f56565;
+    border-color: #f56565;
+}
+
+.action-btn:hover {
+    background: #e9ecef;
+    transform: translateY(-2px);
+}
+
+.action-btn.danger:hover {
+    background: #f56565;
+    color: white;
+}`;
+                    
+                    document.getElementById('jsCode').value = `let todos = JSON.parse(localStorage.getItem('todos')) || [];
+let currentFilter = 'all';
+
+const todoInput = document.getElementById('todoInput');
+const todoList = document.getElementById('todoList');
+const totalTodosElement = document.getElementById('totalTodos');
+const completedTodosElement = document.getElementById('completedTodos');
+const pendingTodosElement = document.getElementById('pendingTodos');
+
+function saveToLocalStorage() {
+    localStorage.setItem('todos', JSON.stringify(todos));
+    updateStats();
+}
+
+function updateStats() {
+    const total = todos.length;
+    const completed = todos.filter(todo => todo.completed).length;
+    const pending = total - completed;
+    
+    totalTodosElement.textContent = total;
+    completedTodosElement.textContent = completed;
+    pendingTodosElement.textContent = pending;
+}
+
+function formatDate(date) {
+    return new Date(date).toLocaleDateString('id-ID', {
+        day: 'numeric',
+        month: 'short',
+        hour: '2-digit',
+        minute: '2-digit'
+    });
+}
+
+function createTodoElement(todo) {
+    const todoElement = document.createElement('div');
+    todoElement.className = \`todo-item \${todo.completed ? 'completed' : ''}\`;
+    todoElement.dataset.id = todo.id;
+    
+    todoElement.innerHTML = \`
+        <input type="checkbox" class="todo-checkbox" \${todo.completed ? 'checked' : ''}>
+        <span class="todo-text">\${todo.text}</span>
+        <span class="todo-date">\${formatDate(todo.createdAt)}</span>
+        <div class="todo-actions">
+            <button class="todo-btn edit">
+                <i class="fas fa-edit"></i>
+            </button>
+            <button class="todo-btn delete">
+                <i class="fas fa-trash"></i>
+            </button>
+        </div>
+    \`;
+    
+    const checkbox = todoElement.querySelector('.todo-checkbox');
+    const editBtn = todoElement.querySelector('.edit');
+    const deleteBtn = todoElement.querySelector('.delete');
+    
+    checkbox.addEventListener('click', () => toggleTodo(todo.id));
+    editBtn.addEventListener('click', () => editTodo(todo.id));
+    deleteBtn.addEventListener('click', () => deleteTodo(todo.id));
+    
+    return todoElement;
+}
+
+function renderTodos() {
+    todoList.innerHTML = '';
+    
+    let filteredTodos = todos;
+    
+    if (currentFilter === 'active') {
+        filteredTodos = todos.filter(todo => !todo.completed);
+    } else if (currentFilter === 'completed') {
+        filteredTodos = todos.filter(todo => todo.completed);
+    }
+    
+    filteredTodos.forEach(todo => {
+        todoList.appendChild(createTodoElement(todo));
+    });
+}
+
+function addTodo() {
+    const text = todoInput.value.trim();
+    
+    if (text) {
+        const newTodo = {
+            id: Date.now(),
+            text: text,
+            completed: false,
+            createdAt: new Date().toISOString(),
+            updatedAt: new Date().toISOString()
+        };
+        
+        todos.push(newTodo);
+        saveToLocalStorage();
+        renderTodos();
+        
+        todoInput.value = '';
+        todoInput.focus();
+    }
+}
+
+function toggleTodo(id) {
+    todos = todos.map(todo => 
+        todo.id === id ? { ...todo, completed: !todo.completed, updatedAt: new Date().toISOString() } : todo
+    );
+    saveToLocalStorage();
+    renderTodos();
+}
+
+function editTodo(id) {
+    const todo = todos.find(t => t.id === id);
+    if (!todo) return;
+    
+    const newText = prompt('Edit todo:', todo.text);
+    
+    if (newText !== null && newText.trim() !== '') {
+        todo.text = newText.trim();
+        todo.updatedAt = new Date().toISOString();
+        saveToLocalStorage();
+        renderTodos();
+    }
+}
+
+function deleteTodo(id) {
+    if (confirm('Yakin ingin menghapus todo ini?')) {
+        todos = todos.filter(todo => todo.id !== id);
+        saveToLocalStorage();
+        renderTodos();
+    }
+}
+
+function filterTodos(filter) {
+    currentFilter = filter;
+    
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+    });
+    
+    event.target.classList.add('active');
+    
+    renderTodos();
+}
+
+function clearCompleted() {
+    if (confirm('Yakin ingin menghapus semua todo yang sudah selesai?')) {
+        todos = todos.filter(todo => !todo.completed);
+        saveToLocalStorage();
+        renderTodos();
+    }
+}
+
+function clearAll() {
+    if (confirm('Yakin ingin menghapus semua todo?')) {
+        todos = [];
+        saveToLocalStorage();
+        renderTodos();
+    }
+}
+
+todoInput.addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        addTodo();
+    }
+});
+
+updateStats();
+renderTodos();
+
+console.log('Todo List App siap digunakan!');`;
+                    
+                    document.querySelector('[data-tab="html"]').click();
+                    break;
+                    
+                default:
+                    break;
             }
             
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            document.querySelector('[data-tab="html"]').click();
         });
     });
     
@@ -384,58 +1278,38 @@ document.addEventListener('DOMContentLoaded', function() {
         populateGlossary(containerId, glossaryData[category]);
     });
     
-    runCodeButton.addEventListener('click', function() {
-        const htmlCode = document.getElementById('htmlCode').value;
-        const cssCode = document.getElementById('cssCode').value;
-        const jsCode = document.getElementById('jsCode').value;
-        
-        const fullHTML = `
-            <!DOCTYPE html>
-            <html>
-            <head>
-                <style>${cssCode}</style>
-                <script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                        ${jsCode}
-                    });
-                </script>
-            </head>
-            ${htmlCode.replace('<script src="script.js"></script>', '')}
-            </html>
-        `;
-        
-        const iframeDoc = previewFrame.contentDocument || previewFrame.contentWindow.document;
-        iframeDoc.open();
-        iframeDoc.write(fullHTML);
-        iframeDoc.close();
-    });
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const searchInput = document.getElementById('searchInput');
     
-    runCodeButton.click();
-    
-    tabButtons.forEach(button => {
+    filterButtons.forEach(button => {
         button.addEventListener('click', function() {
-            const tab = this.getAttribute('data-tab');
+            const filter = this.getAttribute('data-filter');
             
-            tabButtons.forEach(btn => btn.classList.remove('active'));
+            filterButtons.forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
             
-            codeEditors.forEach(editor => {
-                editor.classList.remove('active');
-                if (editor.id === `${tab}-editor`) {
-                    editor.classList.add('active');
+            document.querySelectorAll('.glosarium-item').forEach(item => {
+                if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
                 }
             });
         });
     });
     
-    exampleButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const exampleName = this.getAttribute('data-name');
-            let htmlCode = '';
-            let cssCode = '';
-            let jsCode = '';
+    if (searchInput) {
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
             
-            switch(exampleName) {
-                case 'Calculator':
-                    htmlCode = `<div class="calculator">
-                        <div
+            document.querySelectorAll('.glosarium-item').forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(searchTerm)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    }
+});
