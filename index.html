@@ -1,17 +1,689 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Profil MBS</title>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <div class="kartu-profil">
-   <img src="foto-profil.jpg" alt="foto profil saya">
-    <h1>MUHAMMAD BAGUS SAJIWO</h1>
-    <p>Siswa Rangking 1 lomba kejurusan dan uts/uas kelas and WELCOME TO MY FIRST WEBSITE!</p>
-    <a href="instagram.com/saputra_alfauzi">Kunjungi ig saya</a>
-      <button id"sapaButton">Sapa Saya</button>
-    </div>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Langkah Web Development</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">Langkah Web Development</h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#home" class="nav-link active" data-target="home">Beranda</a></li>
+                    <li><a href="#zero-to-master" class="nav-link" data-target="zero-to-master">Zero To Master</a></li>
+                    <li><a href="#glosarium" class="nav-link" data-target="glosarium">Glosarium</a></li>
+                    <li><a href="#resources" class="nav-link" data-target="resources">Sumber Daya</a></li>
+                </ul>
+            </nav>
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <main class="main-content container">
+        <section id="home" class="content-section active">
+            <div class="hero">
+                <h2>Selamat Datang di Perjalanan Web Development</h2>
+                <p>Website ini akan memandu Anda dari dasar-dasar web development hingga teknik tingkat lanjut yang digunakan oleh para ahli.</p>
+                <div class="hero-buttons">
+                    <a href="#zero-to-master" class="btn btn-primary" data-target="zero-to-master">Mulai Belajar</a>
+                    <a href="#glosarium" class="btn btn-secondary" data-target="glosarium">Lihat Glosarium</a>
+                </div>
+            </div>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <i class="fas fa-layer-group"></i>
+                    <h3>Zero To Master</h3>
+                    <p>Pelajari semua konsep web development dari nol hingga mahir dengan kurikulum terstruktur.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-book"></i>
+                    <h3>Glosarium Lengkap</h3>
+                    <p>Referensi lengkap kode HTML, CSS, JavaScript beserta penjelasan dan kegunaannya.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-code"></i>
+                    <h3>Praktik Langsung</h3>
+                    <p>Contoh kode dan proyek praktis untuk memperkuat pemahaman konsep.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="zero-to-master" class="content-section">
+            <div class="section-header">
+                <h2>Zero To Master</h2>
+                <p>Panduan lengkap dari dasar hingga mahir web development</p>
+            </div>
+            
+            <div class="learning-path">
+                <div class="path-step">
+                    <div class="step-header">
+                        <span class="step-number">1</span>
+                        <h3>Dasar-dasar HTML</h3>
+                    </div>
+                    <div class="step-content">
+                        <p>Pelajari struktur dasar HTML, elemen, atribut, dan semantic markup.</p>
+                        <ul class="topic-list">
+                            <li><i class="fas fa-check-circle"></i> Struktur dokumen HTML</li>
+                            <li><i class="fas fa-check-circle"></i> Tag dan elemen dasar</li>
+                            <li><i class="fas fa-check-circle"></i> Atribut HTML</li>
+                            <li><i class="fas fa-check-circle"></i> Form dan input</li>
+                            <li><i class="fas fa-check-circle"></i> HTML5 Semantic Elements</li>
+                        </ul>
+                        <div class="code-example">
+                            <h4>Contoh: Struktur HTML Dasar</h4>
+                            <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="id"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Halaman Web&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;Judul Halaman&lt;/h1&gt;
+    &lt;/header&gt;
+    &lt;main&gt;
+        &lt;p&gt;Konten halaman&lt;/p&gt;
+    &lt;/main&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="path-step">
+                    <div class="step-header">
+                        <span class="step-number">2</span>
+                        <h3>Styling dengan CSS</h3>
+                    </div>
+                    <div class="step-content">
+                        <p>Kuasi CSS untuk styling, layout, animasi, dan desain responsif.</p>
+                        <ul class="topic-list">
+                            <li><i class="fas fa-check-circle"></i> Selektor CSS dan properti</li>
+                            <li><i class="fas fa-check-circle"></i> Box Model</li>
+                            <li><i class="fas fa-check-circle"></i> Flexbox dan Grid</li>
+                            <li><i class="fas fa-check-circle"></i> Media Queries</li>
+                            <li><i class="fas fa-check-circle"></i> Animasi dan Transisi</li>
+                        </ul>
+                        <div class="code-example">
+                            <h4>Contoh: CSS Grid Layout</h4>
+                            <pre><code>.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.item {
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="path-step">
+                    <div class="step-header">
+                        <span class="step-number">3</span>
+                        <h3>JavaScript Dasar</h3>
+                    </div>
+                    <div class="step-content">
+                        <p>Pelajari JavaScript untuk membuat website interaktif dan dinamis.</p>
+                        <ul class="topic-list">
+                            <li><i class="fas fa-check-circle"></i> Variabel dan tipe data</li>
+                            <li><i class="fas fa-check-circle"></i> Fungsi dan kontrol alur</li>
+                            <li><i class="fas fa-check-circle"></i> DOM Manipulation</li>
+                            <li><i class="fas fa-check-circle"></i> Event Handling</li>
+                            <li><i class="fas fa-check-circle"></i> Fetch API dan AJAX</li>
+                        </ul>
+                        <div class="code-example">
+                            <h4>Contoh: Manipulasi DOM</h4>
+                            <pre><code>// Seleksi elemen
+const button = document.querySelector('#myButton');
+const output = document.querySelector('#output');
+
+// Tambahkan event listener
+button.addEventListener('click', function() {
+    output.textContent = 'Tombol diklik!';
+    output.classList.add('active');
+});
+
+// Manipulasi elemen
+function updateContent() {
+    const element = document.getElementById('content');
+    element.innerHTML = 'Konten diperbarui';
+}</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="path-step">
+                    <div class="step-header">
+                        <span class="step-number">4</span>
+                        <h3>JavaScript Lanjutan</h3>
+                    </div>
+                    <div class="step-content">
+                        <p>Konsep JavaScript tingkat lanjut untuk pengembangan yang lebih kompleks.</p>
+                        <ul class="topic-list">
+                            <li><i class="fas fa-check-circle"></i> ES6+ Features</li>
+                            <li><i class="fas fa-check-circle"></i> Asynchronous JavaScript</li>
+                            <li><i class="fas fa-check-circle"></i> Object-Oriented Programming</li>
+                            <li><i class="fas fa-check-circle"></i> Functional Programming</li>
+                            <li><i class="fas fa-check-circle"></i> Modules dan Bundlers</li>
+                        </ul>
+                        <div class="code-example">
+                            <h4>Contoh: Async/Await</h4>
+                            <pre><code>// Fungsi asynchronous dengan async/await
+async function fetchData() {
+    try {
+        const response = await fetch('https://api.example.com/data');
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
+
+// Penggunaan
+fetchData().then(data => {
+    console.log('Data diterima:', data);
+});
+
+// Arrow function dan array methods
+const numbers = [1, 2, 3, 4, 5];
+const doubled = numbers.map(num => num * 2);
+const evens = numbers.filter(num => num % 2 === 0);</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="path-step">
+                    <div class="step-header">
+                        <span class="step-number">5</span>
+                        <h3>Framework & Tools</h3>
+                    </div>
+                    <div class="step-content">
+                        <p>Pelajari framework modern dan tools untuk pengembangan web efisien.</p>
+                        <ul class="topic-list">
+                            <li><i class="fas fa-check-circle"></i> Version Control dengan Git</li>
+                            <li><i class="fas fa-check-circle"></i> React.js atau Vue.js</li>
+                            <li><i class="fas fa-check-circle"></i> Package Managers (npm, yarn)</li>
+                            <li><i class="fas fa-check-circle"></i> Build Tools (Webpack, Vite)</li>
+                            <li><i class="fas fa-check-circle"></i> Testing (Jest, Cypress)</li>
+                        </ul>
+                        <div class="code-example">
+                            <h4>Contoh: React Component</h4>
+                            <pre><code>import React, { useState } from 'react';
+
+function Counter() {
+    const [count, setCount] = useState(0);
+    
+    const increment = () => setCount(count + 1);
+    const decrement = () => setCount(count - 1);
+    
+    return (
+        &lt;div className="counter"&gt;
+            &lt;h2&gt;Counter: {count}&lt;/h2&gt;
+            &lt;button onClick={increment}&gt;+&lt;/button&gt;
+            &lt;button onClick={decrement}&gt;-&lt;/button&gt;
+        &lt;/div&gt;
+    );
+}
+
+export default Counter;</code></pre>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="path-step">
+                    <div class="step-header">
+                        <span class="step-number">6</span>
+                        <h3>Optimasi & Deployment</h3>
+                    </div>
+                    <div class="step-content">
+                        <p>Teknik optimasi dan deployment untuk website yang cepat dan andal.</p>
+                        <ul class="topic-list">
+                            <li><i class="fas fa-check-circle"></i> Web Performance Optimization</li>
+                            <li><i class="fas fa-check-circle"></i> SEO Best Practices</li>
+                            <li><i class="fas fa-check-circle"></i> Security Considerations</li>
+                            <li><i class="fas fa-check-circle"></i> Deployment Strategies</li>
+                            <li><i class="fas fa-check-circle"></i> Monitoring dan Analytics</li>
+                        </ul>
+                        <div class="code-example">
+                            <h4>Contoh: Web Performance Tips</h4>
+                            <pre><code>// Lazy loading images
+&lt;img src="placeholder.jpg" data-src="image.jpg" class="lazy" alt="..."&gt;
+
+&lt;script&gt;
+document.addEventListener("DOMContentLoaded", function() {
+    const lazyImages = document.querySelectorAll('img.lazy');
+    
+    const imageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.classList.remove('lazy');
+                imageObserver.unobserve(img);
+            }
+        });
+    });
+    
+    lazyImages.forEach(img => imageObserver.observe(img));
+});
+&lt;/script&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="glosarium" class="content-section">
+            <div class="section-header">
+                <h2>Glosarium Web Development</h2>
+                <p>Referensi lengkap kode HTML, CSS, JavaScript beserta penjelasan</p>
+            </div>
+            
+            <div class="glosarium-controls">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Cari kode atau istilah...">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-filter="all">Semua</button>
+                    <button class="filter-btn" data-filter="html">HTML</button>
+                    <button class="filter-btn" data-filter="css">CSS</button>
+                    <button class="filter-btn" data-filter="js">JavaScript</button>
+                    <button class="filter-btn" data-filter="general">Umum</button>
+                </div>
+            </div>
+            
+            <div class="glosarium-container">
+                <div class="glosarium-category">
+                    <h3>HTML Elements & Attributes</h3>
+                    <div class="glosarium-grid">
+                        <div class="glosarium-item" data-category="html">
+                            <div class="item-header">
+                                <h4>&lt;!DOCTYPE html&gt;</h4>
+                                <span class="item-category">HTML</span>
+                            </div>
+                            <p class="item-description">Deklarasi tipe dokumen, menentukan versi HTML (HTML5).</p>
+                            <div class="item-usage">
+                                <strong>Kegunaan:</strong> Harus ada di awal setiap dokumen HTML.
+                            </div>
+                        </div>
+                        
+                        <div class="glosarium-item" data-category="html">
+                            <div class="item-header">
+                                <h4>&lt;html lang="id"&gt;</h4>
+                                <span class="item-category">HTML</span>
+                            </div>
+                            <p class="item-description">Elemen root dari dokumen HTML dengan atribut bahasa.</p>
+                            <div class="item-usage">
+                                <strong>Kegunaan:</strong> Menentukan bahasa halaman untuk aksesibilitas dan SEO.
+                            </div>
+                        </div>
+                        
+                        <div class="glosarium-item" data-category="html">
+                            <div class="item-header">
+                                <h4>&lt;head&gt;</h4>
+                                <span class="item-category">HTML</span>
+                            </div>
+                            <p class="item-description">Container untuk metadata tentang dokumen HTML.</p>
+                            <div class="item-usage">
+                                <strong>Kegunaan:</strong> Berisi title, styles, scripts, dan meta informasi.
+                            </div>
+                        </div>
+                        
+                        <div class="glosarium-item" data-category="html">
+                            <div class="item-header">
+                                <h4>&lt;meta charset="UTF-8"&gt;</h4>
+                                <span class="item-category">HTML</span>
+                            </div>
+                            <p class="item-description">Menentukan encoding karakter untuk dokumen HTML.</p>
+                            <div class="item-usage">
+                                <strong>Kegunaan:</strong> Memastikan karakter ditampilkan dengan benar.
+                            </div>
+                        </div>
+                        
+                        <div class="glosarium-item" data-category="html">
+                            <div class="item-header">
+                                <h4>&lt;title&gt;</h4>
+                                <span class="item-category">HTML</span>
+                            </div>
+                            <p class="item-description">Menentukan judul halaman web yang muncul di tab browser.</p>
+                            <div class="item-usage">
+                                <strong>Kegunaan:</strong> Penting untuk SEO dan pengalaman pengguna.
+                            </div>
+                        </div>
+                        
+                        <div class="glosarium-item" data-category="html">
+                            <div class="item-header">
+                                <h4>&lt;body&gt;</h4>
+                                <span class="item-category">HTML</span>
+                            </div>
+                            <p class="item-description">Berisi konten yang terlihat dari halaman web.</p>
+                            <div class="item-usage">
+                                <strong>Kegunaan:</strong> Tempat semua konten halaman (teks, gambar, dll).
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="glosarium-category">
+                    <h3>CSS Properties & Selectors</h3>
+                    <div class="glosarium-grid">
+                        <div class="glosarium-item" data-category="css">
+                            <div class="item-header">
+                                <h4>display: flex;</h4>
+                                <span class="item-category">CSS</span>
+                            </div>
+                            <p class="item-description">Mengatur container sebagai flexbox untuk layout fleksibel.</p>
+                            <div class="item-usage">
+                                <strong>Kegunaan:</strong> Membuat layout responsif dengan penjajaran dan distribusi ruang yang mudah.
+                            </div>
+                        </div>
+                        
+                        <div class="glosarium-item" data-category="css">
+                            <div class="item-header">
+                                <h4>grid-template-columns</h4>
+                                <span class="item-category">CSS</span>
+                            </div>
+                            <p class="item-description">Mendefinisikan kolom dalam grid layout.</p>
+                            <div class="item-usage">
+                                <strong>Kegunaan:</strong> Membuat layout kompleks dengan baris dan kolom.
+                            </div>
+                        </div>
+                        
+                        <div class="glosarium-item" data-category="css">
+                            <div class="item-header">
+                                <h4>@media (max-width: 768px)</h4>
+                                <span class="item-category">CSS</span>
+                            </div>
+                            <p class="item-description">Media query untuk styles pada perangkat dengan lebar maksimum 768px.</p>
+                            <div class="item-usage">
+                                <strong>Kegunaan:</strong> Membuat desain responsif untuk tablet dan mobile.
+                            </div>
+                        </div>
+                        
+                        <div class="glosarium-item" data-category="css">
+                            <div class="item-header">
+                                <h4>position: absolute;</h4>
+                                <span class="item-category">CSS</span>
+                            </div>
+                            <p class="item-description">Memposisikan elemen relatif terhadap elemen parent terdekat yang diposisikan.</p>
+                            <div class="item-usage">
+                                <strong>Kegunaan:</strong> Untuk penempatan presisi elemen di halaman.
+                            </div>
+                        </div>
+                        
+                        <div class="glosarium-item" data-category="css">
+                            <div class="item-header">
+                                <h4>z-index: 10;</h4>
+                                <span class="item-category">CSS</span>
+                            </div>
+                            <p class="item-description">Mengontrol tumpukan vertikal elemen yang diposisikan.</p>
+                            <div class="item-usage">
+                                <strong>Kegunaan:</strong> Menentukan elemen mana yang muncul di depan atau belakang.
+                            </div>
+                        </div>
+                        
+                        <div class="glosarium-item" data-category="css">
+                            <div class="item-header">
+                                <h4>transition: all 0.3s ease;</h4>
+                                <span class="item-category">CSS</span>
+                            </div>
+                            <p class="item-description">Menerapkan transisi halus pada perubahan properti CSS.</p>
+                            <div class="item-usage">
+                                <strong>Kegunaan:</strong> Membuat animasi halus untuk interaksi pengguna.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="glosarium-category">
+                    <h3>JavaScript Methods & Concepts</h3>
+                    <div class="glosarium-grid">
+                        <div class="glosarium-item" data-category="js">
+                            <div class="item-header">
+                                <h4>document.querySelector()</h4>
+                                <span class="item-category">JavaScript</span>
+                            </div>
+                            <p class="item-description">Mengembalikan elemen pertama yang cocok dengan selector CSS.</p>
+                            <div class="item-usage">
+                                <strong>Kegunaan:</strong> Seleksi elemen DOM untuk manipulasi.
+                            </div>
+                        </div>
+                        
+                        <div class="glosarium-item" data-category="js">
+                            <div class="item-header">
+                                <h4>addEventListener()</h4>
+                                <span class="item-category">JavaScript</span>
+                            </div>
+                            <p class="item-description">Mendaftarkan event handler untuk elemen tertentu.</p>
+                            <div class="item-usage">
+                                <strong>Kegunaan:</strong> Menangani interaksi pengguna seperti klik, input, dll.
+                            </div>
+                        </div>
+                        
+                        <div class="glosarium-item" data-category="js">
+                            <div class="item-header">
+                                <h4>fetch()</h4>
+                                <span class="item-category">JavaScript</span>
+                            </div>
+                            <p class="item-description">API modern untuk melakukan HTTP requests.</p>
+                            <div class="item-usage">
+                                <strong>Kegunaan:</strong> Mengambil data dari server secara asinkron.
+                            </div>
+                        </div>
+                        
+                        <div class="glosarium-item" data-category="js">
+                            <div class="item-header">
+                                <h4>map()</h4>
+                                <span class="item-category">JavaScript</span>
+                            </div>
+                            <p class="item-description">Membuat array baru dengan hasil pemanggilan fungsi pada setiap elemen.</p>
+                            <div class="item-usage">
+                                <strong>Kegunaan:</strong> Transformasi data dalam array.
+                            </div>
+                        </div>
+                        
+                        <div class="glosarium-item" data-category="js">
+                            <div class="item-header">
+                                <h4>filter()</h4>
+                                <span class="item-category">JavaScript</span>
+                            </div>
+                            <p class="item-description">Membuat array baru dengan elemen yang lolos tes fungsi.</p>
+                            <div class="item-usage">
+                                <strong>Kegunaan:</strong> Filter data dalam array berdasarkan kondisi.
+                            </div>
+                        </div>
+                        
+                        <div class="glosarium-item" data-category="js">
+                            <div class="item-header">
+                                <h4>async/await</h4>
+                                <span class="item-category">JavaScript</span>
+                            </div>
+                            <p class="item-description">Sintaks untuk menangani operasi asinkron dengan cara yang sinkron.</p>
+                            <div class="item-usage">
+                                <strong>Kegunaan:</strong> Menulis kode asinkron yang lebih mudah dibaca dan dipelihara.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="glosarium-category">
+                    <h3>Konsep & Istilah Umum</h3>
+                    <div class="glosarium-grid">
+                        <div class="glosarium-item" data-category="general">
+                            <div class="item-header">
+                                <h4>DOM (Document Object Model)</h4>
+                                <span class="item-category">Umum</span>
+                            </div>
+                            <p class="item-description">Representasi terstruktur dari dokumen HTML sebagai pohon objek.</p>
+                            <div class="item-usage">
+                                <strong>Kegunaan:</strong> Memungkinkan JavaScript untuk mengakses dan memanipulasi elemen HTML.
+                            </div>
+                        </div>
+                        
+                        <div class="glosarium-item" data-category="general">
+                            <div class="item-header">
+                                <h4>API (Application Programming Interface)</h4>
+                                <span class="item-category">Umum</span>
+                            </div>
+                            <p class="item-description">Kumpulan definisi dan protokol untuk membangun dan mengintegrasikan software.</p>
+                            <div class="item-usage">
+                                <strong>Kegunaan:</strong> Memungkinkan komunikasi antara aplikasi yang berbeda.
+                            </div>
+                        </div>
+                        
+                        <div class="glosarium-item" data-category="general">
+                            <div class="item-header">
+                                <h4>Responsive Design</h4>
+                                <span class="item-category">Umum</span>
+                            </div>
+                            <p class="item-description">Pendekatan desain web yang membuat halaman terlihat baik di semua perangkat.</p>
+                            <div class="item-usage">
+                                <strong>Kegunaan:</strong> Meningkatkan pengalaman pengguna di desktop, tablet, dan mobile.
+                            </div>
+                        </div>
+                        
+                        <div class="glosarium-item" data-category="general">
+                            <div class="item-header">
+                                <h4>SEO (Search Engine Optimization)</h4>
+                                <span class="item-category">Umum</span>
+                            </div>
+                            <p class="item-description">Proses meningkatkan visibilitas website di mesin pencari.</p>
+                            <div class="item-usage">
+                                <strong>Kegunaan:</strong> Meningkatkan ranking website di hasil pencarian organik.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="resources" class="content-section">
+            <div class="section-header">
+                <h2>Sumber Daya Web Development</h2>
+                <p>Kumpulan alat, referensi, dan materi pembelajaran tambahan</p>
+            </div>
+            
+            <div class="resources-container">
+                <div class="resource-card">
+                    <h3><i class="fab fa-mdn"></i> MDN Web Docs</h3>
+                    <p>Dokumentasi lengkap untuk HTML, CSS, JavaScript, dan Web APIs.</p>
+                    <a href="https://developer.mozilla.org" target="_blank" class="resource-link">Kunjungi MDN</a>
+                </div>
+                
+                <div class="resource-card">
+                    <h3><i class="fab fa-codepen"></i> CodePen</h3>
+                    <p>Platform untuk membuat, berbagi, dan bereksperimen dengan kode frontend.</p>
+                    <a href="https://codepen.io" target="_blank" class="resource-link">Kunjungi CodePen</a>
+                </div>
+                
+                <div class="resource-card">
+                    <h3><i class="fab fa-js-square"></i> JavaScript.info</h3>
+                    <p>Tutorial JavaScript modern dari dasar hingga topik lanjutan.</p>
+                    <a href="https://javascript.info" target="_blank" class="resource-link">Kunjungi JavaScript.info</a>
+                </div>
+                
+                <div class="resource-card">
+                    <h3><i class="fab fa-github"></i> GitHub</h3>
+                    <p>Platform hosting kode untuk version control dan kolaborasi.</p>
+                    <a href="https://github.com" target="_blank" class="resource-link">Kunjungi GitHub</a>
+                </div>
+                
+                <div class="resource-card">
+                    <h3><i class="fas fa-palette"></i> CSS-Tricks</h3>
+                    <p>Artikel, tutorial, dan tips tentang CSS dan frontend development.</p>
+                    <a href="https://css-tricks.com" target="_blank" class="resource-link">Kunjungi CSS-Tricks</a>
+                </div>
+                
+                <div class="resource-card">
+                    <h3><i class="fab fa-stack-overflow"></i> Stack Overflow</h3>
+                    <p>Komunitas tanya jawab untuk programmer dari semua level.</p>
+                    <a href="https://stackoverflow.com" target="_blank" class="resource-link">Kunjungi Stack Overflow</a>
+                </div>
+            </div>
+            
+            <div class="shortcuts-section">
+                <h3>Shortcut Keyboard untuk Developer</h3>
+                <div class="shortcuts-grid">
+                    <div class="shortcut-item">
+                        <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd>
+                        <span>Buka Developer Tools (Chrome)</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <kbd>Ctrl</kbd> + <kbd>U</kbd>
+                        <span>Lihat sumber halaman</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <kbd>Ctrl</kbd> + <kbd>S</kbd>
+                        <span>Simpan file</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <kbd>Ctrl</kbd> + <kbd>F</kbd>
+                        <span>Cari dalam halaman</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd>
+                        <span>Reload halaman tanpa cache</span>
+                    </div>
+                    <div class="shortcut-item">
+                        <kbd>Ctrl</kbd> + <kbd>K</kbd> + <kbd>Ctrl</kbd> + <kbd>C</kbd>
+                        <span>Komentari baris (VS Code)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Langkah Web Development</h3>
+                    <p>Platform pembelajaran web development dari dasar hingga mahir.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Navigasi</h3>
+                    <ul>
+                        <li><a href="#home" data-target="home">Beranda</a></li>
+                        <li><a href="#zero-to-master" data-target="zero-to-master">Zero To Master</a></li>
+                        <li><a href="#glosarium" data-target="glosarium">Glosarium</a></li>
+                        <li><a href="#resources" data-target="resources">Sumber Daya</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Kontak</h3>
+                    <p>Email: info@langkahweb.dev</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-github"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Langkah Web Development. Dibuat dengan <i class="fas fa-heart"></i> untuk komunitas developer.</p>
+            </div>
+        </div>
+    </footer>
+
     <script src="script.js"></script>
-  </body>
-</html>
+</body>
+                                                                 </html>
