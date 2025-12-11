@@ -5,11 +5,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const contentSections = document.querySelectorAll('.content-section');
     const filterButtons = document.querySelectorAll('.filter-btn');
     const searchInput = document.getElementById('searchInput');
-    const htmlEditor = document.getElementById('htmlEditor');
-    const runHtmlButton = document.getElementById('runHtml');
-    const previewFrame = document.getElementById('previewFrame');
-    const exampleButtons = document.querySelectorAll('.example');
     const currentYearElement = document.getElementById('currentYear');
+    const startLessonButtons = document.querySelectorAll('.start-lesson');
+    const lessonContainer = document.getElementById('lesson-container');
+    const learningPathList = document.getElementById('learning-path-list');
+    const btnBackToList = document.querySelector('.btn-back-to-list');
+    const prevStepBtn = document.getElementById('prev-step');
+    const nextStepBtn = document.getElementById('next-step');
+    const completeLessonBtn = document.getElementById('complete-lesson');
+    const lessonTitle = document.getElementById('lesson-title');
+    const currentStepSpan = document.getElementById('current-step');
+    const totalStepsSpan = document.getElementById('total-steps');
+    const explanationText = document.getElementById('explanation-text');
+    const lessonCodeExample = document.getElementById('lesson-code-example');
+    const progressDisplay = document.getElementById('progress-display');
     
     if (currentYearElement) {
         currentYearElement.textContent = new Date().getFullYear();
@@ -43,74 +52,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    });
-    
-    runHtmlButton.addEventListener('click', function() {
-        const htmlCode = htmlEditor.value;
-        const iframeDoc = previewFrame.contentDocument || previewFrame.contentWindow.document;
-        
-        iframeDoc.open();
-        iframeDoc.write(htmlCode);
-        iframeDoc.close();
-    });
-    
-    runHtmlButton.click();
-    
-    exampleButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const exampleHTML = this.getAttribute('data-html');
-            htmlEditor.value = `<!DOCTYPE html>
-<html>
-<head>
-    <title>Contoh Praktik</title>
-    <style>
-        body { font-family: Arial; padding: 20px; background: #f5f5f5; }
-        .container { max-width: 600px; margin: 0 auto; }
-    </style>
-</head>
-<body>
-    <div class="container">
-        ${exampleHTML}
-    </div>
-</body>
-</html>`;
-            runHtmlButton.click();
-        });
-    });
-    
-    filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const filter = this.getAttribute('data-filter');
-            
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            this.classList.add('active');
-            
-            const allItems = document.querySelectorAll('.glosarium-item');
-            allItems.forEach(item => {
-                if (filter === 'all' || item.getAttribute('data-category') === filter) {
-                    item.style.display = 'flex';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        });
-    });
-    
-    searchInput.addEventListener('input', function() {
-        const searchTerm = this.value.toLowerCase().trim();
-        const allItems = document.querySelectorAll('.glosarium-item');
-        
-        allItems.forEach(item => {
-            const title = item.querySelector('h4').textContent.toLowerCase();
-            const description = item.querySelector('.item-description').textContent.toLowerCase();
-            const usage = item.querySelector('.item-usage').textContent.toLowerCase();
-            
-            if (title.includes(searchTerm) || description.includes(searchTerm) || usage.includes(searchTerm)) {
-                item.style.display = 'flex';
-            } else {
-                item.style.display = 'none';
-            }
         });
     });
     
@@ -251,26 +192,346 @@ document.addEventListener('DOMContentLoaded', function() {
     populateGlossary('js-glossary', jsGlossary, 'js');
     populateGlossary('general-glossary', generalGlossary, 'general');
     
-    const stepHeaders = document.querySelectorAll('.step-header');
-    stepHeaders.forEach(header => {
-        header.addEventListener('click', function() {
-            const stepContent = this.nextElementSibling;
-            const isVisible = stepContent.style.display !== 'none';
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const filter = this.getAttribute('data-filter');
             
-            stepHeaders.forEach(h => {
-                if (h !== this) {
-                    h.nextElementSibling.style.display = 'none';
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+            
+            const allItems = document.querySelectorAll('.glosarium-item');
+            allItems.forEach(item => {
+                if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
                 }
             });
-            
-            stepContent.style.display = isVisible ? 'none' : 'block';
         });
-        
-        header.nextElementSibling.style.display = 'none';
     });
     
-    if (stepHeaders.length > 0) {
-        stepHeaders[0].nextElementSibling.style.display = 'block';
+    searchInput.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase().trim();
+        const allItems = document.querySelectorAll('.glosarium-item');
+        
+        allItems.forEach(item => {
+            const title = item.querySelector('h4').textContent.toLowerCase();
+            const description = item.querySelector('.item-description').textContent.toLowerCase();
+            const usage = item.querySelector('.item-usage').textContent.toLowerCase();
+            
+            if (title.includes(searchTerm) || description.includes(searchTerm) || usage.includes(searchTerm)) {
+                item.style.display = 'flex';
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    });
+    
+    const lessonsData = {
+        'html-basic': {
+            title: 'HTML Dasar',
+            steps: [
+                {
+                    explanation: '<p>HTML (HyperText Markup Language) adalah bahasa markup yang digunakan untuk membuat struktur halaman web. Setiap dokumen HTML dimulai dengan deklarasi DOCTYPE.</p><p>Deklarasi ini memberitahu browser bahwa dokumen ini menggunakan HTML5.</p>',
+                    code: `<!DOCTYPE html>
+<html>
+<head>
+    <title>Halaman Pertama</title>
+</head>
+<body>
+    <h1>Selamat Datang</h1>
+</body>
+</html>`
+                },
+                {
+                    explanation: '<p>Elemen <strong>&lt;html&gt;</strong> adalah elemen root dari dokumen HTML. Semua elemen lainnya harus berada di dalam elemen ini.</p><p>Atribut <strong>lang</strong> menentukan bahasa dari dokumen, yang penting untuk aksesibilitas dan SEO.</p>',
+                    code: `<!DOCTYPE html>
+<html lang="id">
+<!-- Konten HTML -->
+</html>`
+                },
+                {
+                    explanation: '<p>Bagian <strong>&lt;head&gt;</strong> berisi metadata tentang dokumen, seperti judul, link ke stylesheet, dan script.</p><p>Elemen <strong>&lt;title&gt;</strong> menentukan judul halaman yang muncul di tab browser.</p>',
+                    code: `<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar HTML</title>
+    <link rel="stylesheet" href="styles.css">
+</head>`
+                },
+                {
+                    explanation: '<p>Elemen <strong>&lt;body&gt;</strong> berisi semua konten yang ditampilkan di halaman web, seperti teks, gambar, link, dan elemen lainnya.</p><p>Ini adalah area kerja utama untuk konten website Anda.</p>',
+                    code: `<body>
+    <header>
+        <h1>Website Saya</h1>
+    </header>
+    <main>
+        <p>Ini adalah konten utama.</p>
+    </main>
+</body>`
+                },
+                {
+                    explanation: '<p>Heading tags (<strong>&lt;h1&gt; hingga &lt;h6&gt;</strong>) digunakan untuk judul dan subjudul. <strong>&lt;h1&gt;</strong> adalah yang terpenting dan seharusnya hanya ada satu per halaman.</p><p>Tag <strong>&lt;p&gt;</strong> digunakan untuk paragraf teks biasa.</p>',
+                    code: `<h1>Judul Utama</h1>
+<h2>Sub Judul</h2>
+<p>Ini adalah paragraf pertama.</p>
+<p>Ini adalah paragraf kedua.</p>`
+                }
+            ]
+        },
+        'css-basic': {
+            title: 'CSS Dasar',
+            steps: [
+                {
+                    explanation: '<p>CSS (Cascading Style Sheets) digunakan untuk mengatur tampilan dan tata letak elemen HTML. CSS dapat ditulis inline, internal, atau eksternal.</p><p>Selektor CSS digunakan untuk memilih elemen yang akan distyling.</p>',
+                    code: `/* Selektor element */
+h1 {
+    color: blue;
+}
+
+/* Selektor class */
+.nama-class {
+    font-size: 16px;
+}
+
+/* Selektor ID */
+#nama-id {
+    background-color: yellow;
+}`
+                },
+                {
+                    explanation: '<p>Box model adalah konsep fundamental dalam CSS. Setiap elemen dianggap sebagai kotak dengan margin, border, padding, dan konten.</p><p>Properti <strong>box-sizing: border-box</strong> memastikan padding dan border termasuk dalam lebar elemen.</p>',
+                    code: `.box {
+    width: 200px;
+    height: 100px;
+    padding: 20px;
+    border: 2px solid black;
+    margin: 10px;
+    box-sizing: border-box;
+}`
+                }
+            ]
+        },
+        'css-advanced': {
+            title: 'CSS Lanjutan',
+            steps: [
+                {
+                    explanation: '<p>Flexbox adalah model layout satu dimensi yang memudahkan penataan, perataan, dan distribusi ruang antar item dalam container.</p><p>Properti <strong>display: flex</strong> mengaktifkan flexbox pada container.</p>',
+                    code: `.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.item {
+    flex: 1;
+}`
+                }
+            ]
+        },
+        'js-basic': {
+            title: 'JavaScript Dasar',
+            steps: [
+                {
+                    explanation: '<p>JavaScript adalah bahasa pemrograman yang membuat halaman web interaktif. Variabel digunakan untuk menyimpan data.</p><p><strong>let</strong> dan <strong>const</strong> adalah cara modern untuk mendeklarasikan variabel.</p>',
+                    code: `// Deklarasi variabel
+let nama = "Budi";
+const umur = 25;
+var kota = "Jakarta";
+
+// Tipe data
+let angka = 42;
+let teks = "Hello";
+let benar = true;
+let array = [1, 2, 3];
+let objek = {nama: "Ali", umur: 30};`
+                }
+            ]
+        },
+        'js-advanced': {
+            title: 'JavaScript Lanjutan',
+            steps: [
+                {
+                    explanation: '<p>Promise digunakan untuk menangani operasi asynchronous. Async/await adalah sintaks yang lebih bersih untuk bekerja dengan Promise.</p><p><strong>async</strong> membuat fungsi mengembalikan Promise, dan <strong>await</strong> menunggu Promise selesai.</p>',
+                    code: `// Promise
+let janji = new Promise((resolve, reject) => {
+    setTimeout(() => {
+        resolve("Data diterima");
+    }, 2000);
+});
+
+// Async/Await
+async function ambilData() {
+    try {
+        let response = await fetch('https://api.example.com/data');
+        let data = await response.json();
+        console.log(data);
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}`
+                }
+            ]
+        },
+        'tools-framework': {
+            title: 'Tools & Framework',
+            steps: [
+                {
+                    explanation: '<p>Git adalah sistem kontrol versi untuk melacak perubahan kode. GitHub adalah platform hosting untuk repository Git.</p><p>Perintah dasar Git: clone, add, commit, push, pull.</p>',
+                    code: `# Clone repository
+git clone https://github.com/user/repo.git
+
+# Tambahkan perubahan
+git add .
+
+# Commit perubahan
+git commit -m "Pesan commit"
+
+# Push ke remote
+git push origin main
+
+# Pull perubahan terbaru
+git pull origin main`
+                }
+            ]
+        }
+    };
+    
+    let currentLesson = null;
+    let currentStepIndex = 0;
+    let userProgress = JSON.parse(localStorage.getItem('webdev-progress')) || {
+        completedLessons: [],
+        currentLesson: null,
+        currentStep: 0
+    };
+    
+    function saveProgress() {
+        localStorage.setItem('webdev-progress', JSON.stringify(userProgress));
+        updateProgressDisplay();
+    }
+    
+    function updateProgressDisplay() {
+        const completedCount = userProgress.completedLessons.length;
+        const totalLessons = Object.keys(lessonsData).length;
+        const percentage = Math.round((completedCount / totalLessons) * 100);
+        
+        progressDisplay.innerHTML = `
+            <strong>Progress Belajar:</strong>
+            <div class="progress-bar" style="width: 100%; height: 10px; background: #333; border-radius: 5px; margin: 10px 0;">
+                <div style="width: ${percentage}%; height: 100%; background: var(--primary); border-radius: 5px;"></div>
+            </div>
+            <div>${completedCount}/${totalLessons} pelajaran selesai (${percentage}%)</div>
+        `;
+    }
+    
+    updateProgressDisplay();
+    
+    startLessonButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const lessonId = this.getAttribute('data-lesson');
+            startLesson(lessonId);
+        });
+    });
+    
+    function startLesson(lessonId) {
+        currentLesson = lessonId;
+        currentStepIndex = 0;
+        
+        userProgress.currentLesson = lessonId;
+        userProgress.currentStep = 0;
+        saveProgress();
+        
+        const lesson = lessonsData[lessonId];
+        lessonTitle.textContent = lesson.title;
+        totalStepsSpan.textContent = lesson.steps.length;
+        
+        learningPathList.style.display = 'none';
+        lessonContainer.style.display = 'block';
+        
+        loadCurrentStep();
+    }
+    
+    function loadCurrentStep() {
+        const lesson = lessonsData[currentLesson];
+        const step = lesson.steps[currentStepIndex];
+        
+        currentStepSpan.textContent = currentStepIndex + 1;
+        explanationText.innerHTML = step.explanation;
+        
+        const codeBlock = document.createElement('pre');
+        const codeElement = document.createElement('code');
+        codeElement.textContent = step.code;
+        codeBlock.appendChild(codeElement);
+        
+        lessonCodeExample.innerHTML = '';
+        lessonCodeExample.appendChild(codeBlock);
+        
+        prevStepBtn.disabled = currentStepIndex === 0;
+        
+        if (currentStepIndex === lesson.steps.length - 1) {
+            nextStepBtn.style.display = 'none';
+            completeLessonBtn.style.display = 'block';
+            
+            if (userProgress.completedLessons.includes(currentLesson)) {
+                completeLessonBtn.innerHTML = '<i class="fas fa-check"></i> Pelajaran Sudah Selesai';
+                completeLessonBtn.disabled = true;
+            } else {
+                completeLessonBtn.innerHTML = '<i class="fas fa-check"></i> Selesaikan Pelajaran';
+                completeLessonBtn.disabled = false;
+            }
+        } else {
+            nextStepBtn.style.display = 'block';
+            completeLessonBtn.style.display = 'none';
+        }
+    }
+    
+    if (btnBackToList) {
+        btnBackToList.addEventListener('click', function() {
+            lessonContainer.style.display = 'none';
+            learningPathList.style.display = 'block';
+        });
+    }
+    
+    if (prevStepBtn) {
+        prevStepBtn.addEventListener('click', function() {
+            if (currentStepIndex > 0) {
+                currentStepIndex--;
+                userProgress.currentStep = currentStepIndex;
+                saveProgress();
+                loadCurrentStep();
+            }
+        });
+    }
+    
+    if (nextStepBtn) {
+        nextStepBtn.addEventListener('click', function() {
+            const lesson = lessonsData[currentLesson];
+            if (currentStepIndex < lesson.steps.length - 1) {
+                currentStepIndex++;
+                userProgress.currentStep = currentStepIndex;
+                saveProgress();
+                loadCurrentStep();
+            }
+        });
+    }
+    
+    if (completeLessonBtn) {
+        completeLessonBtn.addEventListener('click', function() {
+            if (!userProgress.completedLessons.includes(currentLesson)) {
+                userProgress.completedLessons.push(currentLesson);
+                saveProgress();
+                
+                this.innerHTML = '<i class="fas fa-check"></i> Pelajaran Selesai!';
+                this.disabled = true;
+                
+                setTimeout(() => {
+                    lessonContainer.style.display = 'none';
+                    learningPathList.style.display = 'block';
+                }, 1500);
+            }
+        });
     }
     
     const themeToggle = document.createElement('button');
@@ -296,181 +557,6 @@ document.addEventListener('DOMContentLoaded', function() {
         themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
     }
     
-    const darkThemeStyles = `
-        .dark-theme {
-            background-color: #121212;
-            color: #e0e0e0;
-        }
-        
-        .dark-theme .header,
-        .dark-theme .feature-card,
-        .dark-theme .path-step,
-        .dark-theme .glosarium-item,
-        .dark-theme .resource-card,
-        .dark-theme .shortcuts-section,
-        .dark-theme .cheatsheet,
-        .dark-theme .practice-examples,
-        .dark-theme .quick-start {
-            background-color: #1e1e1e;
-            color: #e0e0e0;
-            border-color: #333;
-        }
-        
-        .dark-theme .main-nav a {
-            color: #e0e0e0;
-        }
-        
-        .dark-theme .step-header h3,
-        .dark-theme .section-header h2,
-        .dark-theme .glosarium-category h3,
-        .dark-theme .resource-card h3 {
-            color: #bb86fc;
-        }
-        
-        .dark-theme .footer {
-            background-color: #0f0f0f;
-        }
-        
-        .dark-theme .search-box input {
-            background-color: #2d2d2d;
-            border-color: #444;
-            color: #e0e0e0;
-        }
-        
-        .dark-theme .filter-btn {
-            background-color: #333;
-            color: #e0e0e0;
-        }
-        
-        .dark-theme .filter-btn.active {
-            background-color: #bb86fc;
-            color: #121212;
-        }
-        
-        .dark-theme .shortcut-item,
-        .dark-theme .cheat-item,
-        .dark-theme .example {
-            background-color: #2d2d2d;
-        }
-        
-        .dark-theme .shortcut-item kbd,
-        .dark-theme .cheat-item code {
-            background-color: #333;
-            border-color: #444;
-            color: #e0e0e0;
-        }
-        
-        .dark-theme .code-editor .editor-header {
-            background-color: #2d2d2d;
-        }
-        
-        .dark-theme .preview-area h3 {
-            background-color: #2d2d2d;
-            color: #e0e0e0;
-            border-color: #444;
-        }
-    `;
-    
-    const style = document.createElement('style');
-    style.textContent = darkThemeStyles;
-    document.head.appendChild(style);
-    
-    const progressTracker = document.createElement('div');
-    progressTracker.className = 'progress-tracker';
-    progressTracker.innerHTML = `
-        <div class="progress-bar">
-            <div class="progress-fill"></div>
-        </div>
-        <div class="progress-text">Menguasai: <span>0%</span></div>
-    `;
-    progressTracker.style.cssText = `
-        position: fixed;
-        bottom: 80px;
-        right: 20px;
-        background: white;
-        padding: 15px;
-        border-radius: var(--border-radius);
-        box-shadow: var(--shadow);
-        z-index: 999;
-        width: 200px;
-        display: none;
-    `;
-    
-    const progressBar = progressTracker.querySelector('.progress-bar');
-    const progressFill = progressTracker.querySelector('.progress-fill');
-    const progressText = progressTracker.querySelector('.progress-text span');
-    
-    progressBar.style.cssText = `
-        width: 100%;
-        height: 8px;
-        background: #eee;
-        border-radius: 4px;
-        overflow: hidden;
-        margin-bottom: 10px;
-    `;
-    
-    progressFill.style.cssText = `
-        height: 100%;
-        background: var(--primary);
-        width: 0%;
-        transition: width 0.5s ease;
-    `;
-    
-    document.body.appendChild(progressTracker);
-    
-    const stepContents = document.querySelectorAll('.step-content');
-    let completedSteps = 0;
-    
-    stepContents.forEach(step => {
-        const checkButton = document.createElement('button');
-        checkButton.className = 'step-complete-btn';
-        checkButton.innerHTML = '<i class="far fa-check-circle"></i> Tandai selesai';
-        checkButton.style.cssText = `
-            margin-top: 20px;
-            padding: 8px 16px;
-            background: var(--light);
-            border: 2px solid var(--primary);
-            color: var(--primary);
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            font-weight: 600;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        `;
-        
-        checkButton.addEventListener('click', function() {
-            if (!this.classList.contains('completed')) {
-                this.classList.add('completed');
-                this.innerHTML = '<i class="fas fa-check-circle"></i> Selesai dipelajari';
-                this.style.background = 'var(--success)';
-                this.style.color = 'white';
-                this.style.borderColor = 'var(--success)';
-                completedSteps++;
-                updateProgress();
-            }
-        });
-        
-        step.appendChild(checkButton);
-    });
-    
-    function updateProgress() {
-        const totalSteps = stepContents.length;
-        const percentage = Math.round((completedSteps / totalSteps) * 100);
-        
-        progressFill.style.width = `${percentage}%`;
-        progressText.textContent = `${percentage}%`;
-        
-        if (percentage > 0) {
-            progressTracker.style.display = 'block';
-        }
-        
-        if (percentage === 100) {
-            progressTracker.innerHTML += '<div class="congrats">🎉 Selamat! Anda telah menyelesaikan semua materi!</div>';
-        }
-    }
-    
     const codeExamples = document.querySelectorAll('.code-example');
     codeExamples.forEach(codeBlock => {
         const copyButton = document.createElement('button');
@@ -492,19 +578,5 @@ document.addEventListener('DOMContentLoaded', function() {
                 }, 2000);
             });
         });
-    });
-    
-    window.addEventListener('scroll', function() {
-        const scrollPosition = window.scrollY;
-        const windowHeight = window.innerHeight;
-        const docHeight = document.documentElement.scrollHeight;
-        
-        const scrollPercent = (scrollPosition / (docHeight - windowHeight)) * 100;
-        
-        if (scrollPercent > 10 && completedSteps > 0) {
-            progressTracker.style.display = 'block';
-        } else {
-            progressTracker.style.display = 'none';
-        }
     });
 });

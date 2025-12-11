@@ -18,7 +18,6 @@
                     <li><a href="#zero-to-master" class="nav-link" data-target="zero-to-master">Zero To Master</a></li>
                     <li><a href="#glosarium" class="nav-link" data-target="glosarium">Glosarium</a></li>
                     <li><a href="#resources" class="nav-link" data-target="resources">Sumber Daya</a></li>
-                    <li><a href="#practice" class="nav-link" data-target="practice">Praktik</a></li>
                 </ul>
             </nav>
             <button class="menu-toggle" id="menuToggle">
@@ -34,7 +33,7 @@
                 <p>Dari nol hingga mahir dengan panduan lengkap HTML, CSS, JavaScript, dan teknologi web modern.</p>
                 <div class="hero-buttons">
                     <a href="#zero-to-master" class="btn btn-primary" data-target="zero-to-master">Mulai Sekarang</a>
-                    <a href="#practice" class="btn btn-secondary" data-target="practice">Coba Praktik</a>
+                    <a href="#glosarium" class="btn btn-secondary" data-target="glosarium">Lihat Glosarium</a>
                 </div>
             </div>
             
@@ -51,8 +50,8 @@
                 </div>
                 <div class="feature-card">
                     <i class="fas fa-code"></i>
-                    <h3>Praktik Langsung</h3>
-                    <p>Editor kode interaktif untuk mencoba dan bereksperimen langsung.</p>
+                    <h3>Pembelajaran Interaktif</h3>
+                    <p>Penjelasan kode satu per satu seperti aplikasi Mimo.</p>
                 </div>
                 <div class="feature-card">
                     <i class="fas fa-graduation-cap"></i>
@@ -78,7 +77,7 @@
                     </div>
                     <div class="step">
                         <span>4</span>
-                        <p>Praktik dengan editor langsung</p>
+                        <p>Kuasi konsep web development</p>
                     </div>
                 </div>
             </div>
@@ -90,11 +89,11 @@
                 <p>Panduan lengkap dari dasar hingga mahir web development</p>
             </div>
             
-            <div class="learning-path">
-                <div class="path-step">
+            <div class="learning-path" id="learning-path-list">
+                <div class="path-step" data-step="html-basic">
                     <div class="step-header">
                         <span class="step-number">1</span>
-                        <h3>HTML Dasar (Minggu 1-2)</h3>
+                        <h3>HTML Dasar</h3>
                     </div>
                     <div class="step-content">
                         <p>HTML adalah tulang punggung setiap website. Pelajari struktur dasar dan elemen penting.</p>
@@ -124,43 +123,16 @@
                                 <p>header, nav, main, section, article, footer</p>
                             </div>
                         </div>
-                        <div class="code-example">
-                            <h4>Contoh: Halaman HTML Lengkap</h4>
-                            <pre><code>&lt;!DOCTYPE html&gt;
-&lt;html lang="id"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;title&gt;Belajar HTML&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;header&gt;
-        &lt;h1&gt;Selamat Datang&lt;/h1&gt;
-        &lt;nav&gt;
-            &lt;a href="#home"&gt;Home&lt;/a&gt;
-            &lt;a href="#about"&gt;Tentang&lt;/a&gt;
-        &lt;/nav&gt;
-    &lt;/header&gt;
-    &lt;main&gt;
-        &lt;article&gt;
-            &lt;h2&gt;Judul Artikel&lt;/h2&gt;
-            &lt;p&gt;Ini adalah paragraf pertama.&lt;/p&gt;
-            &lt;img src="gambar.jpg" alt="Deskripsi gambar"&gt;
-        &lt;/article&gt;
-    &lt;/main&gt;
-    &lt;footer&gt;
-        &lt;p&gt;Hak Cipta © 2023&lt;/p&gt;
-    &lt;/footer&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-                        </div>
+                        <button class="btn btn-primary start-lesson" data-lesson="html-basic">
+                            <i class="fas fa-play"></i> Mulai Pelajaran
+                        </button>
                     </div>
                 </div>
                 
-                <div class="path-step">
+                <div class="path-step" data-step="css-basic">
                     <div class="step-header">
                         <span class="step-number">2</span>
-                        <h3>CSS Dasar (Minggu 3-4)</h3>
+                        <h3>CSS Dasar</h3>
                     </div>
                     <div class="step-content">
                         <p>CSS memberikan gaya dan tata letak pada website Anda.</p>
@@ -190,83 +162,16 @@
                                 <p>media queries, viewport, percentage units</p>
                             </div>
                         </div>
-                        <div class="code-example">
-                            <h4>Contoh: CSS untuk Styling</h4>
-                            <pre><code>/* Reset dasar */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-    color: #333;
-    background-color: #f4f4f4;
-}
-
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.header {
-    background: linear-gradient(to right, #3498db, #2c3e50);
-    color: white;
-    padding: 20px 0;
-    text-align: center;
-}
-
-.card {
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    padding: 20px;
-    margin: 20px 0;
-    transition: transform 0.3s ease;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-}
-
-.button {
-    display: inline-block;
-    background-color: #3498db;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-}
-
-.button:hover {
-    background-color: #2980b9;
-}
-
-@media (max-width: 768px) {
-    .container {
-        width: 95%;
-        padding: 10px;
-    }
-    
-    .header {
-        padding: 15px 0;
-    }
-}</code></pre>
-                        </div>
+                        <button class="btn btn-primary start-lesson" data-lesson="css-basic">
+                            <i class="fas fa-play"></i> Mulai Pelajaran
+                        </button>
                     </div>
                 </div>
                 
-                <div class="path-step">
+                <div class="path-step" data-step="css-advanced">
                     <div class="step-header">
                         <span class="step-number">3</span>
-                        <h3>CSS Lanjutan (Minggu 5-6)</h3>
+                        <h3>CSS Lanjutan</h3>
                     </div>
                     <div class="step-content">
                         <p>Mastering layout modern dengan Flexbox dan Grid.</p>
@@ -296,71 +201,16 @@ body {
                                 <p>filter, backdrop-filter, blend-mode, clip-path</p>
                             </div>
                         </div>
-                        <div class="code-example">
-                            <h4>Contoh: Flexbox & Grid Layout</h4>
-                            <pre><code>/* Flexbox Layout */
-.flex-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-}
-
-.flex-item {
-    flex: 1 1 300px;
-    min-height: 200px;
-    background: #eee;
-    border-radius: 8px;
-    padding: 20px;
-}
-
-/* CSS Grid Layout */
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    padding: 20px;
-}
-
-.grid-item {
-    background: white;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-/* Animasi */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.animated-item {
-    animation: fadeIn 0.5s ease-out;
-}
-
-/* CSS Variables */
-:root {
-    --primary-color: #3498db;
-    --secondary-color: #2ecc71;
-    --spacing: 20px;
-    --border-radius: 8px;
-}
-
-.element {
-    background-color: var(--primary-color);
-    padding: var(--spacing);
-    border-radius: var(--border-radius);
-}</code></pre>
-                        </div>
+                        <button class="btn btn-primary start-lesson" data-lesson="css-advanced">
+                            <i class="fas fa-play"></i> Mulai Pelajaran
+                        </button>
                     </div>
                 </div>
                 
-                <div class="path-step">
+                <div class="path-step" data-step="js-basic">
                     <div class="step-header">
                         <span class="step-number">4</span>
-                        <h3>JavaScript Dasar (Minggu 7-10)</h3>
+                        <h3>JavaScript Dasar</h3>
                     </div>
                     <div class="step-content">
                         <p>JavaScript membuat website Anda interaktif dan dinamis.</p>
@@ -390,68 +240,16 @@ body {
                                 <p>getElementById, querySelector, innerHTML, classList</p>
                             </div>
                         </div>
-                        <div class="code-example">
-                            <h4>Contoh: JavaScript Dasar</h4>
-                            <pre><code>// Variabel dan Tipe Data
-let nama = "John";
-const umur = 25;
-var aktif = true;
-
-let angka = [1, 2, 3, 4, 5];
-let orang = {
-    nama: "Jane",
-    umur: 30,
-    pekerjaan: "Developer"
-};
-
-// Fungsi dan Kondisi
-function sapa(nama) {
-    if (nama) {
-        return `Halo, ${nama}!`;
-    } else {
-        return "Halo, tamu!";
-    }
-}
-
-console.log(sapa("Budi"));
-
-// Array Methods
-let angkaGanda = angka.map(function(n) {
-    return n * 2;
-});
-
-let angkaGenap = angka.filter(n => n % 2 === 0);
-
-let total = angka.reduce((sum, n) => sum + n, 0);
-
-// DOM Manipulation
-document.addEventListener('DOMContentLoaded', function() {
-    const tombol = document.getElementById('tombolSaya');
-    const output = document.getElementById('output');
-    
-    tombol.addEventListener('click', function() {
-        output.textContent = 'Tombol diklik!';
-        output.classList.add('aktif');
-        
-        // Membuat elemen baru
-        const elemenBaru = document.createElement('div');
-        elemenBaru.textContent = 'Elemen baru dibuat';
-        document.body.appendChild(elemenBaru);
-    });
-    
-    // Mengubah gaya
-    tombol.style.backgroundColor = '#3498db';
-    tombol.style.color = 'white';
-    tombol.style.padding = '10px 20px';
-});</code></pre>
-                        </div>
+                        <button class="btn btn-primary start-lesson" data-lesson="js-basic">
+                            <i class="fas fa-play"></i> Mulai Pelajaran
+                        </button>
                     </div>
                 </div>
                 
-                <div class="path-step">
+                <div class="path-step" data-step="js-advanced">
                     <div class="step-header">
                         <span class="step-number">5</span>
-                        <h3>JavaScript Lanjutan (Minggu 11-14)</h3>
+                        <h3>JavaScript Lanjutan</h3>
                     </div>
                     <div class="step-content">
                         <p>Konsep JavaScript modern untuk aplikasi yang lebih kompleks.</p>
@@ -481,79 +279,16 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <p>pattern matching, validation, string manipulation</p>
                             </div>
                         </div>
-                        <div class="code-example">
-                            <h4>Contoh: JavaScript Modern</h4>
-                            <pre><code>// ES6+ Features
-const nama = "Budi";
-const salam = `Halo, ${nama}! Selamat belajar JavaScript.`;
-
-// Destructuring
-const [first, second, ...rest] = [1, 2, 3, 4, 5];
-const { nama: namaOrang, umur } = orang;
-
-// Spread Operator
-const arr1 = [1, 2, 3];
-const arr2 = [4, 5, 6];
-const combined = [...arr1, ...arr2];
-
-// Async/Await
-async function ambilData() {
-    try {
-        const response = await fetch('https://api.example.com/data');
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        console.log('Data diterima:', data);
-        return data;
-    } catch (error) {
-        console.error('Error mengambil data:', error);
-        throw error;
-    }
-}
-
-// Classes
-class Person {
-    constructor(nama, umur) {
-        this.nama = nama;
-        this.umur = umur;
-    }
-    
-    sapa() {
-        return `Halo, nama saya ${this.nama}`;
-    }
-    
-    static info() {
-        return 'Ini adalah class Person';
-    }
-}
-
-class Developer extends Person {
-    constructor(nama, umur, bahasa) {
-        super(nama, umur);
-        this.bahasa = bahasa;
-    }
-    
-    coding() {
-        return `${this.nama} sedang coding dengan ${this.bahasa}`;
-    }
-}
-
-const dev = new Developer('Ali', 25, 'JavaScript');
-console.log(dev.sapa());
-console.log(dev.coding());
-
-// Local Storage
-localStorage.setItem('pengguna', JSON.stringify({ nama: 'Budi', skor: 100 }));
-const pengguna = JSON.parse(localStorage.getItem('pengguna'));</code></pre>
-                        </div>
+                        <button class="btn btn-primary start-lesson" data-lesson="js-advanced">
+                            <i class="fas fa-play"></i> Mulai Pelajaran
+                        </button>
                     </div>
                 </div>
                 
-                <div class="path-step">
+                <div class="path-step" data-step="tools-framework">
                     <div class="step-header">
                         <span class="step-number">6</span>
-                        <h3>Tools & Framework (Minggu 15-20)</h3>
+                        <h3>Tools & Framework</h3>
                     </div>
                     <div class="step-content">
                         <p>Ekosistem modern untuk pengembangan web profesional.</p>
@@ -583,51 +318,44 @@ const pengguna = JSON.parse(localStorage.getItem('pengguna'));</code></pre>
                                 <p>unit testing, Jest, integration testing, TDD</p>
                             </div>
                         </div>
-                        <div class="code-example">
-                            <h4>Contoh: React Component</h4>
-                            <pre><code>import React, { useState, useEffect } from 'react';
-
-function Counter() {
-    const [count, setCount] = useState(0);
-    const [message, setMessage] = useState('');
-    
-    useEffect(() => {
-        if (count > 10) {
-            setMessage('Wow, angka sudah besar!');
-        } else {
-            setMessage('');
-        }
-    }, [count]);
-    
-    const increment = () => setCount(count + 1);
-    const decrement = () => setCount(count - 1);
-    const reset = () => setCount(0);
-    
-    return (
-        &lt;div className="counter"&gt;
-            &lt;h2&gt;Counter: {count}&lt;/h2&gt;
-            &lt;p&gt;{message}&lt;/p&gt;
-            &lt;div className="buttons"&gt;
-                &lt;button onClick={increment}&gt;Tambah (+)&lt;/button&gt;
-                &lt;button onClick={decrement}&gt;Kurang (-)&lt;/button&gt;
-                &lt;button onClick={reset}&gt;Reset&lt;/button&gt;
-            &lt;/div&gt;
-            &lt;DisplayCount count={count} /&gt;
-        &lt;/div&gt;
-    );
-}
-
-function DisplayCount({ count }) {
-    return (
-        &lt;div className="display"&gt;
-            &lt;p&gt;Angka saat ini: &lt;strong&gt;{count}&lt;/strong&gt;&lt;/p&gt;
-            &lt;p&gt;{count % 2 === 0 ? 'Genap' : 'Ganjil'}&lt;/p&gt;
-        &lt;/div&gt;
-    );
-}
-
-export default Counter;</code></pre>
+                        <button class="btn btn-primary start-lesson" data-lesson="tools-framework">
+                            <i class="fas fa-play"></i> Mulai Pelajaran
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="lesson-container" style="display: none;">
+                <div class="lesson-header">
+                    <button class="btn-back-to-list">
+                        <i class="fas fa-arrow-left"></i> Kembali ke Daftar
+                    </button>
+                    <h2 id="lesson-title">HTML Dasar</h2>
+                    <div class="lesson-progress">
+                        <span id="current-step">1</span>/<span id="total-steps">5</span>
+                    </div>
+                </div>
+                
+                <div class="lesson-content">
+                    <div class="code-explanation">
+                        <div class="explanation-text" id="explanation-text">
+                            <!-- Teks penjelasan akan dimasukkan di sini -->
                         </div>
+                        <div class="code-example" id="lesson-code-example">
+                            <!-- Kode contoh akan dimasukkan di sini -->
+                        </div>
+                    </div>
+                    
+                    <div class="lesson-navigation">
+                        <button class="btn btn-secondary" id="prev-step">
+                            <i class="fas fa-arrow-left"></i> Sebelumnya
+                        </button>
+                        <button class="btn btn-primary" id="next-step">
+                            Lanjut <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <button class="btn btn-success" id="complete-lesson" style="display: none;">
+                            <i class="fas fa-check"></i> Selesaikan Pelajaran
+                        </button>
                     </div>
                 </div>
             </div>
@@ -675,88 +403,6 @@ export default Counter;</code></pre>
                 <div class="glosarium-category">
                     <h3><i class="fas fa-lightbulb"></i> Konsep & Istilah</h3>
                     <div class="glosarium-grid" id="general-glossary">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="practice" class="content-section">
-            <div class="section-header">
-                <h2>Editor Kode Praktik</h2>
-                <p>Coba kode langsung di browser tanpa instalasi apapun</p>
-            </div>
-            
-            <div class="practice-container">
-                <div class="code-editor">
-                    <div class="editor-header">
-                        <h3>HTML</h3>
-                        <button class="btn-run" id="runHtml">Run</button>
-                    </div>
-                    <textarea id="htmlEditor" class="code-input">&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-    &lt;title&gt;Praktik Saya&lt;/title&gt;
-    &lt;style&gt;
-        body {
-            font-family: Arial, sans-serif;
-            padding: 20px;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        .box {
-            background: #f0f0f0;
-            padding: 20px;
-            margin: 10px 0;
-            border-radius: 5px;
-        }
-    &lt;/style&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;div class="container"&gt;
-        &lt;h1&gt;Selamat Mencoba!&lt;/h1&gt;
-        &lt;p&gt;Ubah kode ini dan lihat hasilnya di preview.&lt;/p&gt;
-        &lt;div class="box"&gt;
-            &lt;h2&gt;Kotak Interaktif&lt;/h2&gt;
-            &lt;p id="demo"&gt;Klik tombol di bawah&lt;/p&gt;
-            &lt;button onclick="ubahTeks()"&gt;Klik Saya&lt;/button&gt;
-        &lt;/div&gt;
-    &lt;/div&gt;
-    
-    &lt;script&gt;
-        function ubahTeks() {
-            document.getElementById("demo").innerHTML = "Tombol diklik!";
-        }
-    &lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;</textarea>
-                </div>
-                
-                <div class="preview-area">
-                    <h3>Hasil Preview</h3>
-                    <iframe id="previewFrame"></iframe>
-                </div>
-            </div>
-            
-            <div class="practice-examples">
-                <h3>Contoh untuk Dicoba</h3>
-                <div class="examples">
-                    <div class="example" data-html="&lt;h1 style='color: blue;'&gt;Halo Dunia!&lt;/h1&gt;&lt;p&gt;Ini adalah contoh sederhana.&lt;/p&gt;">
-                        <h4>Teks Berwarna</h4>
-                        <p>HTML dengan styling inline</p>
-                    </div>
-                    <div class="example" data-html="&lt;div style='background: lightblue; padding: 20px; border-radius: 10px;'&gt;&lt;h2&gt;Kotak Biru&lt;/h2&gt;&lt;p&gt;Dengan sudut melengkung&lt;/p&gt;&lt;/div&gt;">
-                        <h4>Kotak Styling</h4>
-                        <p>Div dengan background dan border-radius</p>
-                    </div>
-                    <div class="example" data-html="&lt;button onclick='alert(&quot;Halo!&quot;)' style='padding: 10px 20px; background: green; color: white; border: none; border-radius: 5px;'&gt;Klik Saya&lt;/button&gt;">
-                        <h4>Tombol Interaktif</h4>
-                        <p>Button dengan JavaScript onclick</p>
-                    </div>
-                    <div class="example" data-html="&lt;ul&gt;&lt;li&gt;Item 1&lt;/li&gt;&lt;li&gt;Item 2&lt;/li&gt;&lt;li&gt;Item 3&lt;/li&gt;&lt;/ul&gt;&lt;ol&gt;&lt;li&gt;Pertama&lt;/li&gt;&lt;li&gt;Kedua&lt;/li&gt;&lt;/ol&gt;">
-                        <h4>List HTML</h4>
-                        <p>Unordered dan ordered list</p>
                     </div>
                 </div>
             </div>
@@ -810,40 +456,40 @@ export default Counter;</code></pre>
                 <h3>Shortcut Keyboard Penting</h3>
                 <div class="shortcuts-grid">
                     <div class="shortcut-item">
-                        <kbd>Ctrl</kbd> + <kbd>S</kbd>
+                        <div class="shortcut-keys">
+                            <kbd>Ctrl</kbd> + <kbd>S</kbd>
+                        </div>
                         <span>Simpan file</span>
                     </div>
                     <div class="shortcut-item">
-                        <kbd>Ctrl</kbd> + <kbd>C</kbd>
+                        <div class="shortcut-keys">
+                            <kbd>Ctrl</kbd> + <kbd>C</kbd>
+                        </div>
                         <span>Copy</span>
                     </div>
                     <div class="shortcut-item">
-                        <kbd>Ctrl</kbd> + <kbd>V</kbd>
+                        <div class="shortcut-keys">
+                            <kbd>Ctrl</kbd> + <kbd>V</kbd>
+                        </div>
                         <span>Paste</span>
                     </div>
                     <div class="shortcut-item">
-                        <kbd>Ctrl</kbd> + <kbd>Z</kbd>
+                        <div class="shortcut-keys">
+                            <kbd>Ctrl</kbd> + <kbd>Z</kbd>
+                        </div>
                         <span>Undo</span>
                     </div>
                     <div class="shortcut-item">
-                        <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd>
-                        <span>Developer Tools</span>
+                        <div class="shortcut-keys">
+                            <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd>
+                        </div>
+                        <span>Dev Tools</span>
                     </div>
                     <div class="shortcut-item">
-                        <kbd>Ctrl</kbd> + <kbd>F</kbd>
-                        <span>Cari dalam file</span>
-                    </div>
-                    <div class="shortcut-item">
-                        <kbd>Ctrl</kbd> + <kbd>/</kbd>
-                        <span>Komentari kode</span>
-                    </div>
-                    <div class="shortcut-item">
-                        <kbd>F5</kbd>
-                        <span>Refresh halaman</span>
-                    </div>
-                    <div class="shortcut-item">
-                        <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd>
-                        <span>Refresh tanpa cache</span>
+                        <div class="shortcut-keys">
+                            <kbd>Ctrl</kbd> + <kbd>F</kbd>
+                        </div>
+                        <span>Cari</span>
                     </div>
                 </div>
             </div>
@@ -893,17 +539,11 @@ export default Counter;</code></pre>
                         <li><a href="#home" data-target="home">Beranda</a></li>
                         <li><a href="#zero-to-master" data-target="zero-to-master">Zero To Master</a></li>
                         <li><a href="#glosarium" data-target="glosarium">Glosarium</a></li>
-                        <li><a href="#practice" data-target="practice">Praktik</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h3>Kontak & Dukungan</h3>
-                    <p>Email: support@langkahweb.dev</p>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                        <a href="#"><i class="fab fa-discord"></i></a>
-                    </div>
+                    <h3>Progress Belajar</h3>
+                    <div id="progress-display">Belum ada progress</div>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -914,4 +554,4 @@ export default Counter;</code></pre>
 
     <script src="script.js"></script>
 </body>
-                                     </html>
+</html>

@@ -141,37 +141,15 @@ body {
     overflow: hidden;
 }
 
-.hero::before {
-    content: "";
-    position: absolute;
-    top: -50%;
-    right: -50%;
-    width: 100%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
-    background-size: 30px 30px;
-    opacity: 0.3;
-    animation: moveBackground 20s linear infinite;
-}
-
-@keyframes moveBackground {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
 .hero h2 {
     font-size: 2.5rem;
     margin-bottom: 20px;
-    position: relative;
-    z-index: 1;
 }
 
 .hero p {
     font-size: 1.2rem;
     max-width: 700px;
     margin: 0 auto 30px;
-    position: relative;
-    z-index: 1;
     opacity: 0.9;
 }
 
@@ -180,8 +158,6 @@ body {
     justify-content: center;
     gap: 15px;
     flex-wrap: wrap;
-    position: relative;
-    z-index: 1;
 }
 
 .btn {
@@ -205,7 +181,6 @@ body {
 .btn-primary:hover {
     background-color: #3ab8d8;
     transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(76, 201, 240, 0.3);
 }
 
 .btn-secondary {
@@ -216,7 +191,6 @@ body {
 .btn-secondary:hover {
     background-color: #f0f0f0;
     transform: translateY(-3px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
 }
 
 .features {
@@ -405,20 +379,82 @@ body {
     color: var(--accent);
 }
 
+.start-lesson {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.lesson-header {
+    background-color: var(--primary);
+    color: white;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.btn-back-to-list {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 600;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-back-to-list:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.lesson-progress {
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+.lesson-content {
+    background-color: white;
+    border-radius: var(--border-radius);
+    padding: 30px;
+    box-shadow: var(--shadow);
+}
+
+.code-explanation {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.explanation-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--dark);
+}
+
+.explanation-text p {
+    margin-bottom: 20px;
+}
+
 .code-example {
     background-color: #1e1e1e;
     color: #d4d4d4;
     border-radius: var(--border-radius);
     padding: 25px;
-    margin-top: 25px;
     overflow-x: auto;
-    position: relative;
-}
-
-.code-example h4 {
-    color: white;
-    margin-bottom: 15px;
-    font-size: 1.1rem;
 }
 
 .code-example pre {
@@ -432,6 +468,23 @@ body {
 .code-example code {
     font-family: 'Source Code Pro', monospace;
     display: block;
+}
+
+.lesson-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.btn-success {
+    background-color: var(--success);
+    color: white;
+}
+
+.btn-success:hover {
+    background-color: #3d8b40;
 }
 
 .glosarium-controls {
@@ -462,7 +515,6 @@ body {
 .search-box input:focus {
     border-color: var(--primary);
     outline: none;
-    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
 }
 
 .search-box i {
@@ -597,122 +649,6 @@ body {
     color: var(--primary-dark);
 }
 
-.practice-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 30px;
-    margin-bottom: 40px;
-}
-
-.code-editor {
-    background-color: #1e1e1e;
-    border-radius: var(--border-radius);
-    overflow: hidden;
-}
-
-.editor-header {
-    background-color: #252526;
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: white;
-}
-
-.editor-header h3 {
-    font-size: 1.2rem;
-    color: #cccccc;
-}
-
-.btn-run {
-    background-color: var(--success);
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: var(--transition);
-}
-
-.btn-run:hover {
-    background-color: #3d8b40;
-}
-
-.code-input {
-    width: 100%;
-    height: 400px;
-    background-color: #1e1e1e;
-    color: #d4d4d4;
-    font-family: 'Source Code Pro', monospace;
-    font-size: 14px;
-    line-height: 1.5;
-    padding: 20px;
-    border: none;
-    resize: vertical;
-    outline: none;
-}
-
-.preview-area {
-    background-color: white;
-    border-radius: var(--border-radius);
-    padding: 0;
-    overflow: hidden;
-    box-shadow: var(--shadow);
-}
-
-.preview-area h3 {
-    padding: 15px 20px;
-    background-color: var(--light);
-    border-bottom: 1px solid #ddd;
-    color: var(--primary-dark);
-}
-
-#previewFrame {
-    width: 100%;
-    height: 400px;
-    border: none;
-    display: block;
-}
-
-.practice-examples {
-    background-color: white;
-    border-radius: var(--border-radius);
-    padding: 30px;
-    box-shadow: var(--shadow);
-}
-
-.practice-examples h3 {
-    margin-bottom: 25px;
-    color: var(--primary-dark);
-}
-
-.examples {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-}
-
-.example {
-    background-color: var(--light);
-    padding: 20px;
-    border-radius: var(--border-radius);
-    cursor: pointer;
-    transition: var(--transition);
-    border: 2px solid transparent;
-}
-
-.example:hover {
-    background-color: #e3f2fd;
-    border-color: var(--primary);
-    transform: translateY(-3px);
-}
-
-.example h4 {
-    color: var(--primary-dark);
-    margin-bottom: 10px;
-}
-
 .resources-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -775,17 +711,27 @@ body {
 
 .shortcuts-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 15px;
 }
 
 .shortcut-item {
     display: flex;
+    flex-direction: column;
     align-items: center;
+    text-align: center;
     padding: 12px 15px;
     background-color: var(--light);
     border-radius: var(--border-radius);
-    gap: 15px;
+    gap: 10px;
+}
+
+.shortcut-keys {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .shortcut-item kbd {
@@ -795,8 +741,9 @@ body {
     font-family: 'Source Code Pro', monospace;
     border: 1px solid #dee2e6;
     box-shadow: 0 2px 0 #dee2e6;
-    min-width: 80px;
+    min-width: 40px;
     text-align: center;
+    font-size: 0.9rem;
 }
 
 .cheatsheet {
@@ -813,13 +760,13 @@ body {
 
 .cheatsheet-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
 }
 
 .cheat-item {
     background-color: var(--light);
-    padding: 20px;
+    padding: 15px;
     border-radius: var(--border-radius);
     text-align: center;
 }
@@ -839,6 +786,7 @@ body {
     font-size: 0.9rem;
     color: var(--dark);
     border: 1px solid #dee2e6;
+    word-break: break-all;
 }
 
 .footer {
@@ -879,28 +827,11 @@ body {
     color: var(--secondary);
 }
 
-.social-icons {
-    display: flex;
-    gap: 15px;
-    margin-top: 15px;
-}
-
-.social-icons a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
+#progress-display {
     background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
-    color: white;
-    font-size: 1.2rem;
-    transition: var(--transition);
-}
-
-.social-icons a:hover {
-    background-color: var(--primary);
-    transform: translateY(-3px);
+    padding: 15px;
+    border-radius: var(--border-radius);
+    margin-top: 10px;
 }
 
 .footer-bottom {
@@ -949,8 +880,91 @@ body {
     font-size: 1.2rem;
 }
 
+.dark-theme {
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.dark-theme .header,
+.dark-theme .feature-card,
+.dark-theme .path-step,
+.dark-theme .glosarium-item,
+.dark-theme .resource-card,
+.dark-theme .shortcuts-section,
+.dark-theme .cheatsheet,
+.dark-theme .quick-start,
+.dark-theme .topic,
+.dark-theme .lesson-content,
+.dark-theme .explanation-text {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    border-color: #333;
+}
+
+.dark-theme .main-nav a {
+    color: #e0e0e0;
+}
+
+.dark-theme .step-header h3,
+.dark-theme .section-header h2,
+.dark-theme .glosarium-category h3,
+.dark-theme .resource-card h3,
+.dark-theme .feature-card h3,
+.dark-theme .topic h4,
+.dark-theme .lesson-header h2,
+.dark-theme .explanation-text {
+    color: #bb86fc;
+}
+
+.dark-theme .topic {
+    background-color: #2d2d2d;
+}
+
+.dark-theme .topic h4,
+.dark-theme .topic p {
+    color: #e0e0e0;
+}
+
+.dark-theme .footer {
+    background-color: #0f0f0f;
+}
+
+.dark-theme .search-box input {
+    background-color: #2d2d2d;
+    border-color: #444;
+    color: #e0e0e0;
+}
+
+.dark-theme .filter-btn {
+    background-color: #333;
+    color: #e0e0e0;
+}
+
+.dark-theme .filter-btn.active {
+    background-color: #bb86fc;
+    color: #121212;
+}
+
+.dark-theme .shortcut-item,
+.dark-theme .cheat-item {
+    background-color: #2d2d2d;
+}
+
+.dark-theme .shortcut-item kbd,
+.dark-theme .cheat-item code {
+    background-color: #333;
+    border-color: #444;
+    color: #e0e0e0;
+}
+
+.dark-theme .item-description,
+.dark-theme .item-usage,
+.dark-theme .footer-section p {
+    color: #b0b0b0;
+}
+
 @media (max-width: 992px) {
-    .practice-container {
+    .code-explanation {
         grid-template-columns: 1fr;
     }
     
@@ -1032,10 +1046,19 @@ body {
     }
     
     .shortcuts-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
     
     .cheatsheet-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
-                                  }
+    
+    .lesson-navigation {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .lesson-navigation button {
+        width: 100%;
+    }
+}
