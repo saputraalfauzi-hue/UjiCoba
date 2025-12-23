@@ -16,7 +16,7 @@
                     <h1>Code Explorer</h1>
                 </div>
                 <div class="search-bar">
-                    <input type="text" placeholder="Cari kode atau pengguna...">
+                    <input type="text" id="searchInput" placeholder="Cari kode atau pengguna...">
                     <i class="fas fa-search search-icon"></i>
                 </div>
                 <div class="user-menu">
@@ -24,7 +24,7 @@
                         <i class="fas fa-bell"></i>
                         <span class="notification-count">3</span>
                     </div>
-                    <div class="user-avatar" id="userAvatar">
+                    <div class="user-avatar" onclick="window.location.href='profile.html'">
                         <img src="https://i.pravatar.cc/40?img=1" alt="User Avatar">
                     </div>
                 </div>
@@ -58,31 +58,20 @@
             <div class="content">
                 <div class="post-form">
                     <div class="post-form-header">
-                        <img src="https://i.pravatar.cc/40?img=1" alt="User Avatar">
+                        <img id="currentUserAvatar" src="https://i.pravatar.cc/40?img=1" alt="User Avatar">
                         <div class="post-form-input">
                             <input type="text" placeholder="Bagikan kode Anda hari ini...">
                         </div>
                     </div>
                     <div class="post-form-actions">
-                        <div class="action-item">
-                            <i class="fas fa-code"></i>
-                            <span>HTML/CSS</span>
+                        <div class="action-item" onclick="window.location.href='post.html'">
+                            <i class="fas fa-plus"></i>
+                            <span>Buat Postingan</span>
                         </div>
-                        <div class="action-item">
-                            <i class="fab fa-js"></i>
-                            <span>JavaScript</span>
-                        </div>
-                        <div class="action-item">
-                            <i class="fas fa-image"></i>
-                            <span>Gambar</span>
-                        </div>
-                        <button class="post-button">Posting</button>
                     </div>
                 </div>
 
-                <div class="posts-container">
-                    <!-- Postingan akan dimuat melalui JavaScript -->
-                </div>
+                <div class="posts-container" id="postsContainer"></div>
             </div>
 
             <div class="right-sidebar">
@@ -129,113 +118,22 @@
                 <i class="fas fa-home"></i>
                 <span>Beranda</span>
             </div>
-            <div class="nav-item">
+            <div class="nav-item" onclick="window.location.href='search.html'">
                 <i class="fas fa-search"></i>
                 <span>Jelajahi</span>
             </div>
-            <div class="nav-item add-post">
+            <div class="nav-item add-post" onclick="window.location.href='post.html'">
                 <i class="fas fa-plus"></i>
             </div>
-            <div class="nav-item">
+            <div class="nav-item" onclick="window.location.href='notifications.html'">
                 <i class="fas fa-heart"></i>
                 <span>Notifikasi</span>
             </div>
-            <div class="nav-item" id="profileBtn">
+            <div class="nav-item" onclick="window.location.href='profile.html'">
                 <i class="fas fa-user"></i>
                 <span>Profil</span>
             </div>
         </nav>
-
-        <div class="profile-modal" id="profileModal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2>Profil Saya</h2>
-                    <button class="close-modal" id="closeProfileModal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <div class="profile-header">
-                        <img src="https://i.pravatar.cc/100?img=1" alt="Profile Picture">
-                        <h3>John Doe</h3>
-                        <p>@johndoe</p>
-                        <div class="profile-stats">
-                            <div class="stat">
-                                <strong>24</strong>
-                                <span>Postingan</span>
-                            </div>
-                            <div class="stat">
-                                <strong>1.2K</strong>
-                                <span>Pengikut</span>
-                            </div>
-                            <div class="stat">
-                                <strong>350</strong>
-                                <span>Mengikuti</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="profile-details">
-                        <h4>Tentang Saya</h4>
-                        <p>Frontend Developer dengan passion untuk membuat kode yang bersih dan efisien. Saya suka berbagi pengetahuan tentang HTML, CSS, dan JavaScript.</p>
-                        
-                        <h4>Kode Terpopuler</h4>
-                        <div class="popular-codes">
-                            <div class="code-item">
-                                <i class="fas fa-code"></i>
-                                <div>
-                                    <strong>CSS Grid Layout</strong>
-                                    <span>245 likes</span>
-                                </div>
-                            </div>
-                            <div class="code-item">
-                                <i class="fab fa-js"></i>
-                                <div>
-                                    <strong>JavaScript Slider</strong>
-                                    <span>189 likes</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn-logout" id="logoutBtn">Keluar</button>
-                </div>
-            </div>
-        </div>
-
-        <div class="add-post-modal" id="addPostModal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2>Buat Postingan Baru</h2>
-                    <button class="close-modal" id="closePostModal">&times;</button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="postTitle">Judul Kode</label>
-                        <input type="text" id="postTitle" placeholder="Contoh: Animasi Loading CSS">
-                    </div>
-                    <div class="form-group">
-                        <label for="postDescription">Deskripsi</label>
-                        <textarea id="postDescription" placeholder="Jelaskan tentang kode yang Anda bagikan..."></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="postCode">Kode</label>
-                        <div class="code-type-selector">
-                            <button class="code-type-btn active">HTML</button>
-                            <button class="code-type-btn">CSS</button>
-                            <button class="code-type-btn">JS</button>
-                        </div>
-                        <textarea id="postCode" placeholder="Masukkan kode Anda di sini..."></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="postTags">Tag (pisahkan dengan koma)</label>
-                        <input type="text" id="postTags" placeholder="html, css, animation">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn-cancel" id="cancelPostBtn">Batal</button>
-                    <button class="btn-post" id="submitPostBtn">Posting Kode</button>
-                </div>
-            </div>
-        </div>
     </div>
 
     <script src="script.js"></script>
