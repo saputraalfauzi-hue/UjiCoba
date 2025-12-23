@@ -15,52 +15,21 @@
                     <i class="fas fa-code logo-icon"></i>
                     <h1>Code Explorer</h1>
                 </div>
-                <div class="search-bar">
-                    <input type="text" id="searchInput" placeholder="Cari kode atau pengguna...">
-                    <i class="fas fa-search search-icon"></i>
-                </div>
                 <div class="user-menu">
-                    <div class="notification">
-                        <i class="fas fa-bell"></i>
-                        <span class="notification-count">3</span>
-                    </div>
                     <div class="user-avatar" onclick="window.location.href='profile.html'">
-                        <img src="https://i.pravatar.cc/40?img=1" alt="User Avatar">
+                        <img id="headerAvatar" src="https://i.pravatar.cc/40" alt="User Avatar">
                     </div>
                 </div>
             </div>
         </header>
 
         <main class="main-content">
-            <div class="sidebar">
-                <div class="sidebar-item active">
-                    <i class="fas fa-home"></i>
-                    <span>Beranda</span>
-                </div>
-                <div class="sidebar-item">
-                    <i class="fas fa-fire"></i>
-                    <span>Trending</span>
-                </div>
-                <div class="sidebar-item">
-                    <i class="fas fa-bookmark"></i>
-                    <span>Disimpan</span>
-                </div>
-                <div class="sidebar-item">
-                    <i class="fas fa-users"></i>
-                    <span>Komunitas</span>
-                </div>
-                <div class="sidebar-item">
-                    <i class="fas fa-cog"></i>
-                    <span>Pengaturan</span>
-                </div>
-            </div>
-
             <div class="content">
                 <div class="post-form">
                     <div class="post-form-header">
-                        <img id="currentUserAvatar" src="https://i.pravatar.cc/40?img=1" alt="User Avatar">
+                        <img id="currentUserAvatar" src="https://i.pravatar.cc/40" alt="User Avatar">
                         <div class="post-form-input">
-                            <input type="text" placeholder="Bagikan kode Anda hari ini...">
+                            <input type="text" id="quickPost" placeholder="Bagikan kode Anda hari ini..." readonly onclick="window.location.href='post.html'">
                         </div>
                     </div>
                     <div class="post-form-actions">
@@ -72,62 +41,28 @@
                 </div>
 
                 <div class="posts-container" id="postsContainer"></div>
-            </div>
-
-            <div class="right-sidebar">
-                <div class="trending-section">
-                    <h3>Trending Tags</h3>
-                    <div class="tags">
-                        <span class="tag">#javascript</span>
-                        <span class="tag">#css</span>
-                        <span class="tag">#html</span>
-                        <span class="tag">#webdev</span>
-                        <span class="tag">#animation</span>
-                    </div>
+                
+                <div id="loadingPosts" class="loading">
+                    <div class="spinner"></div>
+                    <p>Memuat postingan...</p>
                 </div>
                 
-                <div class="top-developers">
-                    <h3>Top Developers</h3>
-                    <div class="developer">
-                        <img src="https://i.pravatar.cc/30?img=5" alt="Developer">
-                        <div class="developer-info">
-                            <strong>Alex Johnson</strong>
-                            <span>42 postingan</span>
-                        </div>
-                    </div>
-                    <div class="developer">
-                        <img src="https://i.pravatar.cc/30?img=8" alt="Developer">
-                        <div class="developer-info">
-                            <strong>Sarah Miller</strong>
-                            <span>38 postingan</span>
-                        </div>
-                    </div>
-                    <div class="developer">
-                        <img src="https://i.pravatar.cc/30?img=12" alt="Developer">
-                        <div class="developer-info">
-                            <strong>Mike Chen</strong>
-                            <span>35 postingan</span>
-                        </div>
-                    </div>
+                <div id="noPosts" class="empty-state">
+                    <i class="fas fa-code"></i>
+                    <h3>Belum ada postingan</h3>
+                    <p>Jadilah yang pertama membagikan kode!</p>
+                    <button class="btn-primary" onclick="window.location.href='post.html'">Buat Postingan Pertama</button>
                 </div>
             </div>
         </main>
 
         <nav class="bottom-nav">
-            <div class="nav-item active">
+            <div class="nav-item active" onclick="window.location.href='index.html'">
                 <i class="fas fa-home"></i>
                 <span>Beranda</span>
             </div>
-            <div class="nav-item" onclick="window.location.href='search.html'">
-                <i class="fas fa-search"></i>
-                <span>Jelajahi</span>
-            </div>
             <div class="nav-item add-post" onclick="window.location.href='post.html'">
                 <i class="fas fa-plus"></i>
-            </div>
-            <div class="nav-item" onclick="window.location.href='notifications.html'">
-                <i class="fas fa-heart"></i>
-                <span>Notifikasi</span>
             </div>
             <div class="nav-item" onclick="window.location.href='profile.html'">
                 <i class="fas fa-user"></i>
@@ -136,6 +71,10 @@
         </nav>
     </div>
 
-    <script src="script.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    <script src="firebase-config.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
