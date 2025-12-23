@@ -3,554 +3,240 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Langkah Web Development</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Code Explorer - Beranda</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Source+Code+Pro:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="header">
-        <div class="container">
-            <h1 class="logo">Langkah Web Development</h1>
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="#home" class="nav-link active" data-target="home">Beranda</a></li>
-                    <li><a href="#zero-to-master" class="nav-link" data-target="zero-to-master">Zero To Master</a></li>
-                    <li><a href="#glosarium" class="nav-link" data-target="glosarium">Glosarium</a></li>
-                    <li><a href="#resources" class="nav-link" data-target="resources">Sumber Daya</a></li>
-                </ul>
-            </nav>
-            <button class="menu-toggle" id="menuToggle">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-    </header>
+    <div class="app-container" id="appContainer">
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-code logo-icon"></i>
+                    <h1>Code Explorer</h1>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="Cari kode atau pengguna...">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+                <div class="user-menu">
+                    <div class="notification">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-count">3</span>
+                    </div>
+                    <div class="user-avatar" id="userAvatar">
+                        <img src="https://i.pravatar.cc/40?img=1" alt="User Avatar">
+                    </div>
+                </div>
+            </div>
+        </header>
 
-    <main class="main-content container">
-        <section id="home" class="content-section active">
-            <div class="hero">
-                <h2>Mulai Perjalanan Web Development Anda</h2>
-                <p>Dari nol hingga mahir dengan panduan lengkap HTML, CSS, JavaScript, dan teknologi web modern.</p>
-                <div class="hero-buttons">
-                    <a href="#zero-to-master" class="btn btn-primary" data-target="zero-to-master">Mulai Sekarang</a>
-                    <a href="#glosarium" class="btn btn-secondary" data-target="glosarium">Lihat Glosarium</a>
+        <main class="main-content">
+            <div class="sidebar">
+                <div class="sidebar-item active">
+                    <i class="fas fa-home"></i>
+                    <span>Beranda</span>
+                </div>
+                <div class="sidebar-item">
+                    <i class="fas fa-fire"></i>
+                    <span>Trending</span>
+                </div>
+                <div class="sidebar-item">
+                    <i class="fas fa-bookmark"></i>
+                    <span>Disimpan</span>
+                </div>
+                <div class="sidebar-item">
+                    <i class="fas fa-users"></i>
+                    <span>Komunitas</span>
+                </div>
+                <div class="sidebar-item">
+                    <i class="fas fa-cog"></i>
+                    <span>Pengaturan</span>
                 </div>
             </div>
-            
-            <div class="features">
-                <div class="feature-card">
-                    <i class="fas fa-layer-group"></i>
-                    <h3>Struktur Lengkap</h3>
-                    <p>Pelajari dari dasar hingga konsep lanjutan dengan kurikulum terstruktur.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-book"></i>
-                    <h3>Referensi Komprehensif</h3>
-                    <p>Glosarium lengkap dengan semua tag HTML, properti CSS, dan fungsi JavaScript.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-code"></i>
-                    <h3>Pembelajaran Interaktif</h3>
-                    <p>Penjelasan kode satu per satu seperti aplikasi Mimo.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-graduation-cap"></i>
-                    <h3>Untuk Pemula</h3>
-                    <p>Dirancang khusus untuk yang belum pernah coding sebelumnya.</p>
-                </div>
-            </div>
-            
-            <div class="quick-start">
-                <h3>Mulai dalam 5 Menit</h3>
-                <div class="steps">
-                    <div class="step">
-                        <span>1</span>
-                        <p>Pelajari struktur HTML dasar</p>
-                    </div>
-                    <div class="step">
-                        <span>2</span>
-                        <p>Tambahkan styling dengan CSS</p>
-                    </div>
-                    <div class="step">
-                        <span>3</span>
-                        <p>Buat interaksi dengan JavaScript</p>
-                    </div>
-                    <div class="step">
-                        <span>4</span>
-                        <p>Kuasi konsep web development</p>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <section id="zero-to-master" class="content-section">
-            <div class="section-header">
-                <h2>Zero To Master</h2>
-                <p>Panduan lengkap dari dasar hingga mahir web development</p>
-            </div>
-            
-            <div class="learning-path" id="learning-path-list">
-                <div class="path-step" data-step="html-basic">
-                    <div class="step-header">
-                        <span class="step-number">1</span>
-                        <h3>HTML Dasar</h3>
-                    </div>
-                    <div class="step-content">
-                        <p>HTML adalah tulang punggung setiap website. Pelajari struktur dasar dan elemen penting.</p>
-                        <div class="topic-grid">
-                            <div class="topic">
-                                <h4><i class="fas fa-code"></i> Struktur Dokumen</h4>
-                                <p>DOCTYPE, html, head, body, meta tags</p>
-                            </div>
-                            <div class="topic">
-                                <h4><i class="fas fa-heading"></i> Heading & Teks</h4>
-                                <p>h1-h6, p, span, strong, em, br, hr</p>
-                            </div>
-                            <div class="topic">
-                                <h4><i class="fas fa-list"></i> List & Tabel</h4>
-                                <p>ul, ol, li, table, tr, td, th</p>
-                            </div>
-                            <div class="topic">
-                                <h4><i class="fas fa-link"></i> Link & Gambar</h4>
-                                <p>a, img, src, href, alt, target</p>
-                            </div>
-                            <div class="topic">
-                                <h4><i class="fas fa-edit"></i> Form & Input</h4>
-                                <p>form, input, textarea, select, button</p>
-                            </div>
-                            <div class="topic">
-                                <h4><i class="fas fa-cube"></i> Semantic HTML5</h4>
-                                <p>header, nav, main, section, article, footer</p>
-                            </div>
-                        </div>
-                        <button class="btn btn-primary start-lesson" data-lesson="html-basic">
-                            <i class="fas fa-play"></i> Mulai Pelajaran
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="path-step" data-step="css-basic">
-                    <div class="step-header">
-                        <span class="step-number">2</span>
-                        <h3>CSS Dasar</h3>
-                    </div>
-                    <div class="step-content">
-                        <p>CSS memberikan gaya dan tata letak pada website Anda.</p>
-                        <div class="topic-grid">
-                            <div class="topic">
-                                <h4><i class="fas fa-paint-brush"></i> Selektor Dasar</h4>
-                                <p>element, class, id, universal, grouping</p>
-                            </div>
-                            <div class="topic">
-                                <h4><i class="fas fa-box"></i> Box Model</h4>
-                                <p>margin, border, padding, width, height</p>
-                            </div>
-                            <div class="topic">
-                                <h4><i class="fas fa-text-height"></i> Typography</h4>
-                                <p>font-family, size, weight, color, line-height</p>
-                            </div>
-                            <div class="topic">
-                                <h4><i class="fas fa-palette"></i> Warna & Background</h4>
-                                <p>color, background-color, background-image</p>
-                            </div>
-                            <div class="topic">
-                                <h4><i class="fas fa-th-large"></i> Layout Dasar</h4>
-                                <p>display, position, float, clear, z-index</p>
-                            </div>
-                            <div class="topic">
-                                <h4><i class="fas fa-mobile-alt"></i> Responsive Basics</h4>
-                                <p>media queries, viewport, percentage units</p>
-                            </div>
-                        </div>
-                        <button class="btn btn-primary start-lesson" data-lesson="css-basic">
-                            <i class="fas fa-play"></i> Mulai Pelajaran
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="path-step" data-step="css-advanced">
-                    <div class="step-header">
-                        <span class="step-number">3</span>
-                        <h3>CSS Lanjutan</h3>
-                    </div>
-                    <div class="step-content">
-                        <p>Mastering layout modern dengan Flexbox dan Grid.</p>
-                        <div class="topic-grid">
-                            <div class="topic">
-                                <h4><i class="fas fa-boxes"></i> Flexbox</h4>
-                                <p>display: flex, flex-direction, justify-content, align-items</p>
-                            </div>
-                            <div class="topic">
-                                <h4><i class="fas fa-th"></i> CSS Grid</h4>
-                                <p>display: grid, grid-template, grid-area, gap</p>
-                            </div>
-                            <div class="topic">
-                                <h4><i class="fas fa-magic"></i> Transisi & Animasi</h4>
-                                <p>transition, animation, @keyframes, transform</p>
-                            </div>
-                            <div class="topic">
-                                <h4><i class="fas fa-compass"></i> Variabel CSS</h4>
-                                <p>--custom-property, var(), :root selector</p>
-                            </div>
-                            <div class="topic">
-                                <h4><i class="fas fa-expand-alt"></i> Advanced Responsive</h4>
-                                <p>min-width, max-width, mobile-first, responsive images</p>
-                            </div>
-                            <div class="topic">
-                                <h4><i class="fas fa-filter"></i> Filter & Effects</h4>
-                                <p>filter, backdrop-filter, blend-mode, clip-path</p>
-                            </div>
-                        </div>
-                        <button class="btn btn-primary start-lesson" data-lesson="css-advanced">
-                            <i class="fas fa-play"></i> Mulai Pelajaran
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="path-step" data-step="js-basic">
-                    <div class="step-header">
-                        <span class="step-number">4</span>
-                        <h3>JavaScript Dasar</h3>
-                    </div>
-                    <div class="step-content">
-                        <p>JavaScript membuat website Anda interaktif dan dinamis.</p>
-                        <div class="topic-grid">
-                            <div class="topic">
-                                <h4><i class="fas fa-variable"></i> Variabel & Tipe Data</h4>
-                                <p>let, const, var, string, number, boolean, array, object</p>
-                            </div>
-                            <div class="topic">
-                                <h4><i class="fas fa-calculator"></i> Operator</h4>
-                                <p>arithmetic, comparison, logical, assignment</p>
-                            </div>
-                            <div class="topic">
-                                <h4><i class="fas fa-code-branch"></i> Kontrol Alur</h4>
-                                <p>if/else, switch, for, while, do-while</p>
-                            </div>
-                            <div class="topic">
-                                <h4><i class="fas fa-function"></i> Fungsi</h4>
-                                <p>function declaration, expression, arrow functions</p>
-                            </div>
-                            <div class="topic">
-                                <h4><i class="fas fa-sitemap"></i> Array Methods</h4>
-                                <p>map, filter, reduce, forEach, find, some, every</p>
-                            </div>
-                            <div class="topic">
-                                <h4><i class="fas fa-project-diagram"></i> DOM Manipulation</h4>
-                                <p>getElementById, querySelector, innerHTML, classList</p>
-                            </div>
-                        </div>
-                        <button class="btn btn-primary start-lesson" data-lesson="js-basic">
-                            <i class="fas fa-play"></i> Mulai Pelajaran
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="path-step" data-step="js-advanced">
-                    <div class="step-header">
-                        <span class="step-number">5</span>
-                        <h3>JavaScript Lanjutan</h3>
-                    </div>
-                    <div class="step-content">
-                        <p>Konsep JavaScript modern untuk aplikasi yang lebih kompleks.</p>
-                        <div class="topic-grid">
-                            <div class="topic">
-                                <h4><i class="fas fa-clock"></i> Asynchronous JS</h4>
-                                <p>callback, promises, async/await, fetch API</p>
-                            </div>
-                            <div class="topic">
-                                <h4><i class="fas fa-object-group"></i> OOP JavaScript</h4>
-                                <p>classes, inheritance, encapsulation, polymorphism</p>
-                            </div>
-                            <div class="topic">
-                                <h4><i class="fas fa-bolt"></i> ES6+ Features</h4>
-                                <p>template literals, destructuring, spread/rest, modules</p>
-                            </div>
-                            <div class="topic">
-                                <h4><i class="fas fa-exclamation-triangle"></i> Error Handling</h4>
-                                <p>try/catch, throw, custom errors, debugging</p>
-                            </div>
-                            <div class="topic">
-                                <h4><i class="fas fa-cookie"></i> Web Storage</h4>
-                                <p>localStorage, sessionStorage, cookies</p>
-                            </div>
-                            <div class="topic">
-                                <h4><i class="fas fa-tools"></i> Regular Expressions</h4>
-                                <p>pattern matching, validation, string manipulation</p>
-                            </div>
-                        </div>
-                        <button class="btn btn-primary start-lesson" data-lesson="js-advanced">
-                            <i class="fas fa-play"></i> Mulai Pelajaran
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="path-step" data-step="tools-framework">
-                    <div class="step-header">
-                        <span class="step-number">6</span>
-                        <h3>Tools & Framework</h3>
-                    </div>
-                    <div class="step-content">
-                        <p>Ekosistem modern untuk pengembangan web profesional.</p>
-                        <div class="topic-grid">
-                            <div class="topic">
-                                <h4><i class="fab fa-git-alt"></i> Git & GitHub</h4>
-                                <p>version control, branches, pull requests, collaboration</p>
-                            </div>
-                            <div class="topic">
-                                <h4><i class="fab fa-node-js"></i> Node.js & npm</h4>
-                                <p>runtime JavaScript, package management, scripts</p>
-                            </div>
-                            <div class="topic">
-                                <h4><i class="fab fa-react"></i> React Basics</h4>
-                                <p>components, JSX, props, state, hooks</p>
-                            </div>
-                            <div class="topic">
-                                <h4><i class="fab fa-vuejs"></i> Vue.js Basics</h4>
-                                <p>Vue instance, directives, components, Vue CLI</p>
-                            </div>
-                            <div class="topic">
-                                <h4><i class="fas fa-tachometer-alt"></i> Build Tools</h4>
-                                <p>Webpack, Babel, Vite, bundling, transpiling</p>
-                            </div>
-                            <div class="topic">
-                                <h4><i class="fas fa-flask"></i> Testing</h4>
-                                <p>unit testing, Jest, integration testing, TDD</p>
-                            </div>
-                        </div>
-                        <button class="btn btn-primary start-lesson" data-lesson="tools-framework">
-                            <i class="fas fa-play"></i> Mulai Pelajaran
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            <div id="lesson-container" style="display: none;">
-                <div class="lesson-header">
-                    <button class="btn-back-to-list">
-                        <i class="fas fa-arrow-left"></i> Kembali ke Daftar
-                    </button>
-                    <h2 id="lesson-title">HTML Dasar</h2>
-                    <div class="lesson-progress">
-                        <span id="current-step">1</span>/<span id="total-steps">5</span>
-                    </div>
-                </div>
-                
-                <div class="lesson-content">
-                    <div class="code-explanation">
-                        <div class="explanation-text" id="explanation-text">
-                            <!-- Teks penjelasan akan dimasukkan di sini -->
-                        </div>
-                        <div class="code-example" id="lesson-code-example">
-                            <!-- Kode contoh akan dimasukkan di sini -->
+            <div class="content">
+                <div class="post-form">
+                    <div class="post-form-header">
+                        <img src="https://i.pravatar.cc/40?img=1" alt="User Avatar">
+                        <div class="post-form-input">
+                            <input type="text" placeholder="Bagikan kode Anda hari ini...">
                         </div>
                     </div>
-                    
-                    <div class="lesson-navigation">
-                        <button class="btn btn-secondary" id="prev-step">
-                            <i class="fas fa-arrow-left"></i> Sebelumnya
-                        </button>
-                        <button class="btn btn-primary" id="next-step">
-                            Lanjut <i class="fas fa-arrow-right"></i>
-                        </button>
-                        <button class="btn btn-success" id="complete-lesson" style="display: none;">
-                            <i class="fas fa-check"></i> Selesaikan Pelajaran
-                        </button>
+                    <div class="post-form-actions">
+                        <div class="action-item">
+                            <i class="fas fa-code"></i>
+                            <span>HTML/CSS</span>
+                        </div>
+                        <div class="action-item">
+                            <i class="fab fa-js"></i>
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="action-item">
+                            <i class="fas fa-image"></i>
+                            <span>Gambar</span>
+                        </div>
+                        <button class="post-button">Posting</button>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <section id="glosarium" class="content-section">
-            <div class="section-header">
-                <h2>Glosarium Web Development</h2>
-                <p>Referensi lengkap semua elemen HTML, properti CSS, dan fungsi JavaScript</p>
-            </div>
-            
-            <div class="glosarium-controls">
-                <div class="search-box">
-                    <input type="text" id="searchInput" placeholder="Cari kode atau istilah...">
-                    <i class="fas fa-search"></i>
-                </div>
-                <div class="filter-buttons">
-                    <button class="filter-btn active" data-filter="all">Semua</button>
-                    <button class="filter-btn" data-filter="html">HTML</button>
-                    <button class="filter-btn" data-filter="css">CSS</button>
-                    <button class="filter-btn" data-filter="js">JavaScript</button>
-                    <button class="filter-btn" data-filter="general">Konsep</button>
+                <div class="posts-container">
+                    <!-- Postingan akan dimuat melalui JavaScript -->
                 </div>
             </div>
-            
-            <div class="glosarium-container">
-                <div class="glosarium-category">
-                    <h3><i class="fab fa-html5"></i> HTML Tags</h3>
-                    <div class="glosarium-grid" id="html-glossary">
-                    </div>
-                </div>
-                
-                <div class="glosarium-category">
-                    <h3><i class="fab fa-css3-alt"></i> CSS Properties</h3>
-                    <div class="glosarium-grid" id="css-glossary">
-                    </div>
-                </div>
-                
-                <div class="glosarium-category">
-                    <h3><i class="fab fa-js-square"></i> JavaScript</h3>
-                    <div class="glosarium-grid" id="js-glossary">
-                    </div>
-                </div>
-                
-                <div class="glosarium-category">
-                    <h3><i class="fas fa-lightbulb"></i> Konsep & Istilah</h3>
-                    <div class="glosarium-grid" id="general-glossary">
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <section id="resources" class="content-section">
-            <div class="section-header">
-                <h2>Sumber Daya & Alat</h2>
-                <p>Kumpulan alat, referensi, dan materi pembelajaran</p>
-            </div>
-            
-            <div class="resources-container">
-                <div class="resource-card">
-                    <h3><i class="fas fa-book"></i> MDN Web Docs</h3>
-                    <p>Dokumentasi lengkap untuk web technologies.</p>
-                    <a href="https://developer.mozilla.org" target="_blank" class="resource-link">Kunjungi →</a>
+            <div class="right-sidebar">
+                <div class="trending-section">
+                    <h3>Trending Tags</h3>
+                    <div class="tags">
+                        <span class="tag">#javascript</span>
+                        <span class="tag">#css</span>
+                        <span class="tag">#html</span>
+                        <span class="tag">#webdev</span>
+                        <span class="tag">#animation</span>
+                    </div>
                 </div>
                 
-                <div class="resource-card">
-                    <h3><i class="fas fa-graduation-cap"></i> freeCodeCamp</h3>
-                    <p>Kursus coding gratis dengan sertifikat.</p>
-                    <a href="https://freecodecamp.org" target="_blank" class="resource-link">Kunjungi →</a>
-                </div>
-                
-                <div class="resource-card">
-                    <h3><i class="fas fa-code"></i> CodePen</h3>
-                    <p>Editor online untuk frontend coding.</p>
-                    <a href="https://codepen.io" target="_blank" class="resource-link">Kunjungi →</a>
-                </div>
-                
-                <div class="resource-card">
-                    <h3><i class="fab fa-github"></i> GitHub</h3>
-                    <p>Platform untuk kolaborasi dan version control.</p>
-                    <a href="https://github.com" target="_blank" class="resource-link">Kunjungi →</a>
-                </div>
-                
-                <div class="resource-card">
-                    <h3><i class="fas fa-palette"></i> CSS-Tricks</h3>
-                    <p>Artikel dan tutorial CSS terbaru.</p>
-                    <a href="https://css-tricks.com" target="_blank" class="resource-link">Kunjungi →</a>
-                </div>
-                
-                <div class="resource-card">
-                    <h3><i class="fas fa-question-circle"></i> Stack Overflow</h3>
-                    <p>Komunitas tanya jawab untuk developer.</p>
-                    <a href="https://stackoverflow.com" target="_blank" class="resource-link">Kunjungi →</a>
-                </div>
-            </div>
-            
-            <div class="shortcuts-section">
-                <h3>Shortcut Keyboard Penting</h3>
-                <div class="shortcuts-grid">
-                    <div class="shortcut-item">
-                        <div class="shortcut-keys">
-                            <kbd>Ctrl</kbd> + <kbd>S</kbd>
+                <div class="top-developers">
+                    <h3>Top Developers</h3>
+                    <div class="developer">
+                        <img src="https://i.pravatar.cc/30?img=5" alt="Developer">
+                        <div class="developer-info">
+                            <strong>Alex Johnson</strong>
+                            <span>42 postingan</span>
                         </div>
-                        <span>Simpan file</span>
                     </div>
-                    <div class="shortcut-item">
-                        <div class="shortcut-keys">
-                            <kbd>Ctrl</kbd> + <kbd>C</kbd>
+                    <div class="developer">
+                        <img src="https://i.pravatar.cc/30?img=8" alt="Developer">
+                        <div class="developer-info">
+                            <strong>Sarah Miller</strong>
+                            <span>38 postingan</span>
                         </div>
-                        <span>Copy</span>
                     </div>
-                    <div class="shortcut-item">
-                        <div class="shortcut-keys">
-                            <kbd>Ctrl</kbd> + <kbd>V</kbd>
+                    <div class="developer">
+                        <img src="https://i.pravatar.cc/30?img=12" alt="Developer">
+                        <div class="developer-info">
+                            <strong>Mike Chen</strong>
+                            <span>35 postingan</span>
                         </div>
-                        <span>Paste</span>
-                    </div>
-                    <div class="shortcut-item">
-                        <div class="shortcut-keys">
-                            <kbd>Ctrl</kbd> + <kbd>Z</kbd>
-                        </div>
-                        <span>Undo</span>
-                    </div>
-                    <div class="shortcut-item">
-                        <div class="shortcut-keys">
-                            <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd>
-                        </div>
-                        <span>Dev Tools</span>
-                    </div>
-                    <div class="shortcut-item">
-                        <div class="shortcut-keys">
-                            <kbd>Ctrl</kbd> + <kbd>F</kbd>
-                        </div>
-                        <span>Cari</span>
                     </div>
                 </div>
             </div>
-            
-            <div class="cheatsheet">
-                <h3>Cheat Sheet Cepat</h3>
-                <div class="cheatsheet-grid">
-                    <div class="cheat-item">
-                        <h4>HTML: Link</h4>
-                        <code>&lt;a href="url"&gt;teks&lt;/a&gt;</code>
-                    </div>
-                    <div class="cheat-item">
-                        <h4>HTML: Gambar</h4>
-                        <code>&lt;img src="image.jpg" alt="deskripsi"&gt;</code>
-                    </div>
-                    <div class="cheat-item">
-                        <h4>CSS: Warna Teks</h4>
-                        <code>color: #ff0000;</code>
-                    </div>
-                    <div class="cheat-item">
-                        <h4>CSS: Background</h4>
-                        <code>background-color: blue;</code>
-                    </div>
-                    <div class="cheat-item">
-                        <h4>JS: Alert</h4>
-                        <code>alert("Pesan");</code>
-                    </div>
-                    <div class="cheat-item">
-                        <h4>JS: Console Log</h4>
-                        <code>console.log("Debug");</code>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+        </main>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Langkah Web Development</h3>
-                    <p>Platform belajar coding dari nol hingga mahir. Cocok untuk pemula yang belum pernah coding sebelumnya.</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Navigasi Cepat</h3>
-                    <ul>
-                        <li><a href="#home" data-target="home">Beranda</a></li>
-                        <li><a href="#zero-to-master" data-target="zero-to-master">Zero To Master</a></li>
-                        <li><a href="#glosarium" data-target="glosarium">Glosarium</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h3>Progress Belajar</h3>
-                    <div id="progress-display">Belum ada progress</div>
-                </div>
+        <nav class="bottom-nav">
+            <div class="nav-item active">
+                <i class="fas fa-home"></i>
+                <span>Beranda</span>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; <span id="currentYear"></span> Langkah Web Development. Dibuat untuk membantu Anda belajar coding.</p>
+            <div class="nav-item">
+                <i class="fas fa-search"></i>
+                <span>Jelajahi</span>
+            </div>
+            <div class="nav-item add-post">
+                <i class="fas fa-plus"></i>
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-heart"></i>
+                <span>Notifikasi</span>
+            </div>
+            <div class="nav-item" id="profileBtn">
+                <i class="fas fa-user"></i>
+                <span>Profil</span>
+            </div>
+        </nav>
+
+        <div class="profile-modal" id="profileModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Profil Saya</h2>
+                    <button class="close-modal" id="closeProfileModal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="profile-header">
+                        <img src="https://i.pravatar.cc/100?img=1" alt="Profile Picture">
+                        <h3>John Doe</h3>
+                        <p>@johndoe</p>
+                        <div class="profile-stats">
+                            <div class="stat">
+                                <strong>24</strong>
+                                <span>Postingan</span>
+                            </div>
+                            <div class="stat">
+                                <strong>1.2K</strong>
+                                <span>Pengikut</span>
+                            </div>
+                            <div class="stat">
+                                <strong>350</strong>
+                                <span>Mengikuti</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-details">
+                        <h4>Tentang Saya</h4>
+                        <p>Frontend Developer dengan passion untuk membuat kode yang bersih dan efisien. Saya suka berbagi pengetahuan tentang HTML, CSS, dan JavaScript.</p>
+                        
+                        <h4>Kode Terpopuler</h4>
+                        <div class="popular-codes">
+                            <div class="code-item">
+                                <i class="fas fa-code"></i>
+                                <div>
+                                    <strong>CSS Grid Layout</strong>
+                                    <span>245 likes</span>
+                                </div>
+                            </div>
+                            <div class="code-item">
+                                <i class="fab fa-js"></i>
+                                <div>
+                                    <strong>JavaScript Slider</strong>
+                                    <span>189 likes</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-logout" id="logoutBtn">Keluar</button>
+                </div>
             </div>
         </div>
-    </footer>
+
+        <div class="add-post-modal" id="addPostModal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Buat Postingan Baru</h2>
+                    <button class="close-modal" id="closePostModal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="postTitle">Judul Kode</label>
+                        <input type="text" id="postTitle" placeholder="Contoh: Animasi Loading CSS">
+                    </div>
+                    <div class="form-group">
+                        <label for="postDescription">Deskripsi</label>
+                        <textarea id="postDescription" placeholder="Jelaskan tentang kode yang Anda bagikan..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="postCode">Kode</label>
+                        <div class="code-type-selector">
+                            <button class="code-type-btn active">HTML</button>
+                            <button class="code-type-btn">CSS</button>
+                            <button class="code-type-btn">JS</button>
+                        </div>
+                        <textarea id="postCode" placeholder="Masukkan kode Anda di sini..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="postTags">Tag (pisahkan dengan koma)</label>
+                        <input type="text" id="postTags" placeholder="html, css, animation">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-cancel" id="cancelPostBtn">Batal</button>
+                    <button class="btn-post" id="submitPostBtn">Posting Kode</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
